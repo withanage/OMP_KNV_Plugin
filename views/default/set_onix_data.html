@@ -1,0 +1,28 @@
+{{extend 'layout.html'}}
+
+{{=form}}
+
+<br/>
+<div class="one btn btn-default" id="a">{{=T('OMP Onix Daten anzeigen')}}</div>
+<div class="two" id="b"  style="display: none;">
+<div class="one btn btn-default">
+    {{=published_submissions}}
+</div>
+<br/>
+<div class="one btn btn-default">
+    {{=publication_formats}}
+</div>
+<br/>
+
+<div class="one btn btn-default">
+    {{=submissions}}
+</div>
+<br/>
+<div class="one btn btn-default">
+    {{=submission_settings}}
+</div>
+
+</div>
+<script>
+jQuery('.one').click(function(){jQuery('.two').slideToggle()});
+</script>
