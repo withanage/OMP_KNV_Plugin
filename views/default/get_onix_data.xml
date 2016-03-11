@@ -1,12 +1,111 @@
 {{from gluon.serializers import xml}}
 {{
-'''
-xml_string='<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" release="3.0"><Header><Sender><SenderIdentifier><SenderIDType></SenderIDType><IDValue></IDValue></SenderIdentifier><SenderName>XXXXXSedici Editorial</SenderName><ContactName>XXXXXXXXSEDICI</ContactName><EmailAddress>XXXXXXXXXXxxsedici@gmail.com</EmailAddress></Sender><SentDateTime>20150416</SentDateTime></Header><Product><RecordReference>'+myconf.take("omp.url")+'/research/xxxxxx/view/'+str(data[0]['submission_id'])+'</RecordReference><NotificationType>03</NotificationType><RecordSourceType>04</RecordSourceType><ProductIdentifier><ProductIDType>15</ProductIDType><IDValue>6784563452341</IDValue></ProductIdentifier><DescriptiveDetail><ProductComposition>00</ProductComposition><ProductForm>DA</ProductForm><ProductFormDetail>E107</ProductFormDetail><EpubTechnicalProtection>00</EpubTechnicalProtection><Collection><CollectionType>10</CollectionType><TitleDetail><TitleType>01</TitleType><TitleElement><TitleElementLevel>02</TitleElementLevel></TitleElement></TitleDetail></Collection><TitleDetail><TitleType>01</TitleType><TitleElement><TitleElementLevel>01</TitleElementLevel><TitleText>Great paper</TitleText></TitleElement></TitleDetail><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>A01</ContributorRole><PersonName>John Doe</PersonName><PersonNameInverted>Doe, John</PersonNameInverted><NamesBeforeKey>John</NamesBeforeKey><KeyNames>Doe</KeyNames><BiographicalNote></BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>CA</CountryCode></ContributorPlace></Contributor><Extent><ExtentType>08</ExtentType><ExtentValue>0.3</ExtentValue><ExtentUnit>05</ExtentUnit></Extent><Subject><MainSubject></MainSubject><SubjectSchemeIdentifier>12</SubjectSchemeIdentifier><SubjectSchemeVersion>2</SubjectSchemeVersion></Subject></DescriptiveDetail><CollateralDetail><TextContent><TextType>02</TextType><ContentAudience>00</ContentAudience><Text>This is a really good paper</Text></TextContent><TextContent><TextType>03</TextType><ContentAudience>00</ContentAudience><Text>This is a really good paper</Text></TextContent></CollateralDetail><PublishingDetail><Publisher><PublishingRole>01</PublishingRole><PublisherName>norma editorial</PublisherName><Website><WebsiteRole>18</WebsiteRole><WebsiteLink>http://omp.sfu.ca/testdrive/index.php/research</WebsiteLink></Website></Publisher><CityOfPublication>argentina</CityOfPublication><ROWSalesRightsType>02</ROWSalesRightsType></PublishingDetail><ProductSupply><Market><Territory/></Market><MarketPublishingDetail><MarketPublishingStatus>04</MarketPublishingStatus><MarketDate><MarketDateRole>01</MarketDateRole><DateFormat>20</DateFormat><Date>20130801</Date></MarketDate></MarketPublishingDetail><SupplyDetail><Supplier><SupplierRole>09</SupplierRole><SupplierName>norma editorial</SupplierName><EmailAddress>sedici@gmail.com</EmailAddress><Website><WebsiteRole>18</WebsiteRole><WebsiteLink>http://omp.sfu.ca/testdrive/index.php/research</WebsiteLink></Website></Supplier><ProductAvailability>20</ProductAvailability><Price><PriceAmount>0</PriceAmount><CurrencyCode>GBP</CurrencyCode></Price></SupplyDetail></ProductSupply></Product></ONIXMessage>'
-'''
+
+xml_string='<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" release="3.0">'
+xml_string+='	<Header>'
+xml_string+='		<Sender>'
+xml_string+='			<SenderIdentifier>'
+xml_string+='				<SenderIDType></SenderIDType>'
+xml_string+='				<IDValue></IDValue>'
+xml_string+='			</SenderIdentifier>'
+xml_string+='			<SenderName>XXXXXSedici Editorial</SenderName>'
+xml_string+='			<ContactName>XXXXXXXXSEDICI</ContactName>'
+xml_string+='			<EmailAddress>XXXXXXXXXXxxsedici@gmail.com</EmailAddress>'
+xml_string+='		</Sender>'
+xml_string+='		<SentDateTime>20150416</SentDateTime>'
+xml_string+='	</Header>'
+xml_string+='<Product>'
+xml_string+='	<RecordReference>'
+#+myconf.take("omp.url")+'/research/xxxxxx/view/'+str(data[0]['submission_id'])+'
+xml_string+='	</RecordReference>'
+xml_string+='	<NotificationType>03</NotificationType>'
+xml_string+='	<RecordSourceType>04</RecordSourceType>'
+xml_string+='	<ProductIdentifier>'
+xml_string+='		<ProductIDType>15</ProductIDType>'
+xml_string+='		<IDValue>6784563452341</IDValue>'
+xml_string+='	</ProductIdentifier>'
+xml_string+='	<DescriptiveDetail>'
+xml_string+='		<ProductComposition>00</ProductComposition>'
+xml_string+='		<ProductForm>DA</ProductForm>'
+xml_string+='		<ProductFormDetail>E107</ProductFormDetail>'
+xml_string+='		<EpubTechnicalProtection>00</EpubTechnicalProtection>'
+xml_string+='		<Collection>'
+xml_string+='			<CollectionType>10</CollectionType>'
+xml_string+='			<TitleDetail>'
+xml_string+='				<TitleType>01</TitleType>'
+xml_string+='				<TitleElement>'
+xml_string+='					<TitleElementLevel>02</TitleElementLevel>'
+xml_string+='				</TitleElement>'
+xml_string+='			</TitleDetail>'
+xml_string+='		</Collection>'
+xml_string+='		<TitleDetail>'
+xml_string+='			<TitleType>01</TitleType>'
+xml_string+='			<TitleElement>'
+xml_string+='				<TitleElementLevel>01</TitleElementLevel>'
+xml_string+='				<TitleText>Great paper</TitleText>'
+xml_string+='			</TitleElement>'
+xml_string+='		</TitleDetail>'
+xml_string+='		<Contributor>'
+xml_string+='			<SequenceNumber>1</SequenceNumber>'
+xml_string+='			<ContributorRole>A01</ContributorRole>'
+xml_string+='			<PersonName>John Doe</PersonName>'
+xml_string+='			<PersonNameInverted>Doe, John</PersonNameInverted>'
+xml_string+='			<NamesBeforeKey>John</NamesBeforeKey>'
+xml_string+='			<KeyNames>Doe</KeyNames>'
+xml_string+='			<BiographicalNote></BiographicalNote>'
+xml_string+='			<ContributorPlace>'
+xml_string+='				<ContributorPlaceRelator>04</ContributorPlaceRelator>'
+xml_string+='				<CountryCode>CA</CountryCode>'
+xml_string+='			</ContributorPlace>'
+xml_string+='		</Contributor>'
+xml_string+='		<Extent>'
+xml_string+='			<ExtentType>08</ExtentType>'
+xml_string+='			<ExtentValue>0.3</ExtentValue>'
+xml_string+='			<ExtentUnit>05</ExtentUnit>'
+xml_string+='		</Extent>'
+xml_string+='		<Subject>'
+xml_string+='			<MainSubject></MainSubject>'
+xml_string+='			<SubjectSchemeIdentifier>12</SubjectSchemeIdentifier>'
+xml_string+='			<SubjectSchemeVersion>2</SubjectSchemeVersion>'
+xml_string+='		</Subject>'
+xml_string+='	</DescriptiveDetail>'
+xml_string+='	<CollateralDetail>'
+xml_string+='		<TextContent>'
+xml_string+='			<TextType>02</TextType>'
+xml_string+='			<ContentAudience>00</ContentAudience>'
+xml_string+='			<Text>This is a really good paper</Text>'
+xml_string+='		</TextContent>'
+xml_string+='		<TextContent>'
+xml_string+='			<TextType>03</TextType>'
+xml_string+='			<ContentAudience>00</ContentAudience>'
+xml_string+='			<Text>This is a really good paper</Text>'
+xml_string+='		</TextContent>'
+xml_string+='	</CollateralDetail>'
+xml_string+='	<PublishingDetail>'
+xml_string+='		<Publisher>'
+xml_string+='			<PublishingRole>01</PublishingRole>'
+xml_string+='			<PublisherName>norma editorial</PublisherName>'
+xml_string+='			<Website>'
+xml_string+='				<WebsiteRole>18</WebsiteRole>'
+xml_string+='				<WebsiteLink>http://omp.sfu.ca/testdrive/index.php/research</WebsiteLink>'
+xml_string+='			</Website>'
+xml_string+='		</Publisher>'
+xml_string+='		<CityOfPublication>argentina</CityOfPublication>'
+xml_string+='		<ROWSalesRightsType>02</ROWSalesRightsType>'
+xml_string+='	</PublishingDetail>'
+xml_string+='	<ProductSupply>'
+xml_string+='		<Market>'
+xml_string+='			<Territory/>'
+xml_string+='		</Market>'
+xml_string+='		<MarketPublishingDetail>'
+xml_string+='			<MarketPublishingStatus>04</MarketPublishingStatus>'
+xml_string+='			<MarketDate>'
+xml_string+='				<MarketDateRole>01</MarketDateRole><DateFormat>20</DateFormat><Date>20130801</Date></MarketDate></MarketPublishingDetail><SupplyDetail><Supplier><SupplierRole>09</SupplierRole><SupplierName>norma editorial</SupplierName><EmailAddress>sedici@gmail.com</EmailAddress><Website><WebsiteRole>18</WebsiteRole><WebsiteLink>http://omp.sfu.ca/testdrive/index.php/research</WebsiteLink></Website></Supplier><ProductAvailability>20</ProductAvailability><Price><PriceAmount>0</PriceAmount><CurrencyCode>GBP</CurrencyCode></Price></SupplyDetail></ProductSupply></Product></ONIXMessage>'
+
 }}
 
 {{
-
+'''
 def codes_role(x):
     return {
         'AU': 'A01',
@@ -15,24 +114,41 @@ def codes_role(x):
         'PE' : 'B21',
         'PM' : 'PM',
         'CA' : 'PM'
-    }[x]
-
+    }
+'''
 produkt =''
-for  person in authors_pre:
-    role = db((person.user_group_id== db.user_group_settings.user_group_id) & (db.user_group_settings.locale==locale) & (db.user_group_settings.setting_name=='abbrev')).select(db.user_group_settings.setting_value).first()['setting_value']
-    biography =  db((db.author_settings.author_id==person.author_id)  & (db.author_settings.locale==locale) & (db.author_settings.setting_name=='biography')).select(db.author_settings.setting_value).first()
-   }}
+biography = ''
+#for  person in authors_pre:
+#    role = db((person.user_group_id== db.user_group_settings.user_group_id) & (db.user_group_settings.locale==locale) & (db.user_group_settings.setting_name=='abbrev')).select(db.user_group_settings.setting_value).first()['setting_value']
+#    biography =  db((db.author_settings.author_id==person.author_id)  & (db.author_settings.locale==locale) & (db.author_settings.setting_name=='biography')).select(db.author_settings.setting_value).first()
+#   }}
   {{if not biography:
     biography = ''
   }}
  {{pass}}
 {{
-produkt += '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
+#produkt += '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
 }}
-{{pass}}
+{{#pass}}
 {{
 header=''
-header='<Header><Sender><SenderIdentifier><SenderIDType>06</SenderIDType><IDValue>XXXXXXXXXXX</IDValue></SenderIdentifier><SenderName>Heidelberg University Publishing</SenderName><ContactName>Martin Nissen</ContactName><EmailAddress>nissen@ub.uni-heidelberg.de</EmailAddress></Sender><SentDateTime>'+str(data['f_sende_datum']).replace('-','')+'</SentDateTime></Header>'
+header='<Header>'
+header+='	<Sender>'
+header+='		<SenderIdentifier>'
+header+='			<SenderIDType>06</SenderIDType>'
+header+='			<IDValue>XXXXXXXXXXX</IDValue>'
+header+='		</SenderIdentifier>'
+header+='		<SenderName>Heidelberg University Publishing</SenderName>'
+header+='		<ContactName>Martin Nissen</ContactName>'
+header+='		<EmailAddress>nissen@ub.uni-heidelberg.de</EmailAddress>'
+header+='	</Sender>'
+header+='	<SentDateTime>'
+if data:
+	if data['f_sende_datum']:
+		header+=str(data['f_sende_datum']).replace('-','')
+	pass
+pass
+header+='</SentDateTime></Header>'
 }}
 
 {{
@@ -43,7 +159,16 @@ pfd = ''
 etp=''
 
 
-col = '<Collection><CollectionType>10</CollectionType><TitleDetail><TitleText>'+title_text+'</TitleText><TitleType>01</TitleType><TitleElement><TitleElementLevel>02</TitleElementLevel></TitleElement></TitleDetail></Collection>'
+col='<Collection>'
+col+='	<CollectionType>10</CollectionType>'
+col+='	<TitleDetail>'
+col+='		<TitleText>'+title_text+'</TitleText>'
+col+='		<TitleType>01</TitleType>'
+col+='		<TitleElement>'
+col+='			<TitleElementLevel>02</TitleElementLevel>'
+col+='		</TitleElement>'
+col+='	</TitleDetail>'
+col+='</Collection>'
  }}
 {{ for format in publication_formats:
    if format['product_composition_code']:
@@ -58,11 +183,16 @@ col = '<Collection><CollectionType>10</CollectionType><TitleDetail><TitleText>'+
    if format['technical_protection_code']:
       etp = format['technical_protection_code']
    pass
-   descriptive_detail+='<DescriptiveDetail>'+'<ProductComposition>'+pc+'</ProductComposition>'+'<ProductForm>'+pf+'</ProductForm>'+'<ProductFormDetail>'+pfd+'</ProductFormDetail>'+'<EpubTechnicalProtection>'+etp+'</EpubTechnicalProtection>'+col+'</DescriptiveDetail>'
+   descriptive_detail+='<DescriptiveDetail>'
+   descriptive_detail+='	<ProductComposition>'+pc+'</ProductComposition>'
+   descriptive_detail+='	<ProductForm>'+pf+'</ProductForm>'
+   descriptive_detail+='	<ProductFormDetail>'+pfd+'</ProductFormDetail>'
+   descriptive_detail+='	<EpubTechnicalProtection>'+etp+'</EpubTechnicalProtection>'
+   descriptive_detail+='</DescriptiveDetail>'
 pass
 }}
 
 
 
 {{}}
-{{=XML(descriptive_detail,sanitize=False)}}
+{{=XML(xml_string,sanitize=False)}}

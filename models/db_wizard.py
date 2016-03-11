@@ -291,7 +291,7 @@ db.define_table('t_onix_additionals',
     Field('f_mehrbaendiger_werke', type='string', notnull=True,  label=T('Mehrbaendiger Werke')),
     Field('f_issn', type='string', notnull=True, label=T('ISSN')),
     format='%(f_verlagsverkehrsnummer)s',
-    migrate=settings.migrate,
+    migrate=False
     #redefine=True
 )
 
@@ -338,6 +338,6 @@ db.define_table("t_knv_metadata",
      Field("prueftoleranz","double",label=T('Prüftoleranz')),
      Field("f_papiertyp","string",label=T('Papiertyp'),requires=IS_IN_SET(("iw-2", "iw-3", "iw-10", "iw-12", "iw-13", "iw-15"))),
      Field("letzte_seite","string",default="yes",label=T('Letzte Seite'),requires=IS_IN_SET(('yes','no'))),
-     migrate=settings.migrate,
+     migrate=False,
      redefine=True
 )
