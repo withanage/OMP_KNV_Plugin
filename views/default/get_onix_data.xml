@@ -6,7 +6,7 @@ xml_string='<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" releas
 }}
 
 {{
-
+'''
 def codes_role(x):
     return {
         'AU': 'A01',
@@ -15,24 +15,41 @@ def codes_role(x):
         'PE' : 'B21',
         'PM' : 'PM',
         'CA' : 'PM'
-    }[x]
-
+    }
+'''
 produkt =''
-for  person in authors_pre:
-    role = db((person.user_group_id== db.user_group_settings.user_group_id) & (db.user_group_settings.locale==locale) & (db.user_group_settings.setting_name=='abbrev')).select(db.user_group_settings.setting_value).first()['setting_value']
-    biography =  db((db.author_settings.author_id==person.author_id)  & (db.author_settings.locale==locale) & (db.author_settings.setting_name=='biography')).select(db.author_settings.setting_value).first()
-   }}
+biography = ''
+#for  person in authors_pre:
+#    role = db((person.user_group_id== db.user_group_settings.user_group_id) & (db.user_group_settings.locale==locale) & (db.user_group_settings.setting_name=='abbrev')).select(db.user_group_settings.setting_value).first()['setting_value']
+#    biography =  db((db.author_settings.author_id==person.author_id)  & (db.author_settings.locale==locale) & (db.author_settings.setting_name=='biography')).select(db.author_settings.setting_value).first()
+#   }}
   {{if not biography:
     biography = ''
   }}
  {{pass}}
 {{
-produkt += '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
+#produkt += '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
 }}
-{{pass}}
+{{#pass}}
 {{
 header=''
-header='<Header><Sender><SenderIdentifier><SenderIDType>06</SenderIDType><IDValue>XXXXXXXXXXX</IDValue></SenderIdentifier><SenderName>Heidelberg University Publishing</SenderName><ContactName>Martin Nissen</ContactName><EmailAddress>nissen@ub.uni-heidelberg.de</EmailAddress></Sender><SentDateTime>'+str(data['f_sende_datum']).replace('-','')+'</SentDateTime></Header>'
+header='<Header>'
+header+='	<Sender>'
+header+='		<SenderIdentifier>'
+header+='			<SenderIDType>06</SenderIDType>'
+header+='			<IDValue>XXXXXXXXXXX</IDValue>'
+header+='		</SenderIdentifier>'
+header+='		<SenderName>Heidelberg University Publishing</SenderName>'
+header+='		<ContactName>Martin Nissen</ContactName>'
+header+='		<EmailAddress>nissen@ub.uni-heidelberg.de</EmailAddress>'
+header+='	</Sender>'
+header+='	<SentDateTime>'
+if data:
+	if data['f_sende_datum']:
+		header+=str(data['f_sende_datum']).replace('-','')
+	pass
+pass
+header+='</SentDateTime></Header>'
 }}
 
 {{
@@ -43,7 +60,16 @@ pfd = ''
 etp=''
 
 
-col = '<Collection><CollectionType>10</CollectionType><TitleDetail><TitleText>'+title_text+'</TitleText><TitleType>01</TitleType><TitleElement><TitleElementLevel>02</TitleElementLevel></TitleElement></TitleDetail></Collection>'
+col='<Collection>'
+col+='	<CollectionType>10</CollectionType>'
+col+='	<TitleDetail>'
+col+='		<TitleText>'+title_text+'</TitleText>'
+col+='		<TitleType>01</TitleType>'
+col+='		<TitleElement>'
+col+='			<TitleElementLevel>02</TitleElementLevel>'
+col+='		</TitleElement>'
+col+='	</TitleDetail>'
+col+='</Collection>'
  }}
 {{ for format in publication_formats:
    if format['product_composition_code']:
@@ -58,7 +84,12 @@ col = '<Collection><CollectionType>10</CollectionType><TitleDetail><TitleText>'+
    if format['technical_protection_code']:
       etp = format['technical_protection_code']
    pass
-   descriptive_detail+='<DescriptiveDetail>'+'<ProductComposition>'+pc+'</ProductComposition>'+'<ProductForm>'+pf+'</ProductForm>'+'<ProductFormDetail>'+pfd+'</ProductFormDetail>'+'<EpubTechnicalProtection>'+etp+'</EpubTechnicalProtection>'+col+'</DescriptiveDetail>'
+   descriptive_detail+='<DescriptiveDetail>'
+   descriptive_detail+='	<ProductComposition>'+pc+'</ProductComposition>'
+   descriptive_detail+='	<ProductForm>'+pf+'</ProductForm>'
+   descriptive_detail+='	<ProductFormDetail>'+pfd+'</ProductFormDetail>'
+   descriptive_detail+='	<EpubTechnicalProtection>'+etp+'</EpubTechnicalProtection>'
+   descriptive_detail+='</DescriptiveDetail>'
 pass
 }}
 
