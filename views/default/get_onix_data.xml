@@ -150,8 +150,21 @@ biography = ''
   }}
  {{pass}}
 {{
-#produkt = '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
-produkt = '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ 'codes_role(role)'+'</ContributorRole><PersonName>'+'person.first_name'+' '+'person.last_name'+'</PersonName><PersonNameInverted>'+'person.last_name'+', '+'person.first_name'+'</PersonNameInverted><NamesBeforeKey>'+'person.first_name'+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+'person.country'+'</CountryCode></ContributorPlace></Contributor></Product>'
+
+produkt = '<Product>'
+produkt+='	<Contributor>'
+produkt+='		<SequenceNumber>1</SequenceNumber>'
+produkt+='		<ContributorRole>'+ 'codes_role(role)'+'</ContributorRole>'
+produkt+='		'<PersonName>'+'person.first_name'+' '+'person.last_name'+'</PersonName>'
+produkt+='		<PersonNameInverted>'+'person.last_name'+', '+'person.first_name'+'</PersonNameInverted>'
+produkt+='		<NamesBeforeKey>'+'person.first_name'+'</NamesBeforeKey>'
+produkt+='		<BiographicalNote>'+biography+'</BiographicalNote>'
+produkt+='		<ContributorPlace>'
+produkt+='			<ContributorPlaceRelator>04</ContributorPlaceRelator>'
+produkt+='			<CountryCode>'+'person.country'+'</CountryCode>'
+produkt+='		</ContributorPlace>'
+produkt+='	</Contributor>'
+produkt+='</Product>'
 }}
 {{#pass}}
 {{
