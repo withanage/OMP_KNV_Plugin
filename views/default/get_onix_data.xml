@@ -150,7 +150,8 @@ biography = ''
   }}
  {{pass}}
 {{
-#produkt += '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
+#produkt = '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ codes_role(role)+'</ContributorRole><PersonName>'+person.first_name+' '+person.last_name+'</PersonName><PersonNameInverted>'+person.last_name+', '+person.first_name+'</PersonNameInverted><NamesBeforeKey>'+person.first_name+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+person.country+'</CountryCode></ContributorPlace></Contributor></Product>'
+produkt = '<Product><Contributor><SequenceNumber>1</SequenceNumber><ContributorRole>'+ 'codes_role(role)'+'</ContributorRole><PersonName>'+'person.first_name'+' '+'person.last_name'+'</PersonName><PersonNameInverted>'+'person.last_name'+', '+'person.first_name'+'</PersonNameInverted><NamesBeforeKey>'+'person.first_name'+'</NamesBeforeKey><BiographicalNote>'+biography+'</BiographicalNote><ContributorPlace><ContributorPlaceRelator>04</ContributorPlaceRelator><CountryCode>'+'person.country'+'</CountryCode></ContributorPlace></Contributor></Product>'
 }}
 {{#pass}}
 {{
@@ -218,4 +219,4 @@ pass
 
 
 {{}}
-{{=XML(xml_string,sanitize=False)}}
+{{=XML(produkt,sanitize=False)}}
