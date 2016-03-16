@@ -88,6 +88,7 @@ def set_onix_data():
         upload=None, fields=None, labels=None,
         col3={
             'f_verlagsverkehrsnummer':DIV(B(T(".")),_class=""),
+            'f_publisher_role':DIV(T("01 = Publisher 02 = Co-publisher 05 = Host/distributor of electronic content 06 = Published on behalf of Verlagsname"),_class="alert alert-success"),
          },
         submit_button='Einfügen',
         delete_label='Check to delete:',

@@ -1,0 +1,212 @@
+{{from gluon.serializers import xml}}
+{{
+#Für Hardcover eine andere XML
+}}
+<ONIXmessage release="2.1">
+    <header>
+        <m174>VLB - Verzeichnis Lieferbarer Bücher</m174> <!-- t_knv_metadataomp_publisher -->
+        <m175>MVB Marketing- und Verlagsservice des Buchhandels GmbH, 069.1306.550</m175> <!-- -->
+        <m283>serviceline@mvb-online.de</m283>
+        <m182>20160316</m182>
+    </header>
+    <product datestamp="20160315">
+        <a001>a3902356b96446a885724fe86af27dc7</a001>
+        <a002>03</a002>
+        <productidentifier>
+            <b221>02</b221>
+            <b244>3946531024</b244>
+        </productidentifier>
+        <productidentifier>
+            <b221>03</b221>
+            <b244>9783946531029</b244>
+        </productidentifier>
+        <productidentifier>
+            <b221>15</b221>
+            <b244>9783946531029</b244>
+        </productidentifier>
+        <b012>BC</b012>
+        <title>
+            <b202>01</b202>
+            <b203>Der Preis der Diplomatie</b203>
+            <b029>Die Abrechnungen der kaiserlichen Gesandten an der Hohen Pforte, 1580–1583</b029>
+        </title>
+        <contributor>
+            <b034>1</b034>
+            <b035>B01</b035>
+            <b340>1</b340>
+            <b036>Tobias P. Graf</b036>
+            <b037>Graf, Tobias P.</b037>
+            <b039>Tobias P.</b039>
+            <b040>Graf</b040>
+            <b044>Tobias P. Graf hat an der University of Cambridge Geschichte studiert und ist seit
+                2015 Postdoktorand im von der Fritz Thyssen Stiftung geförderten Forschungsprojekt
+                „Wissen und politische Entscheidungsfindung in der Frühen Neuzeit am Beispiel des
+                österreichisch-habsburgischen Auslandsgeheimdienstwesens“ am Historischen Seminar
+                der Ruprecht-Karls-Universität Heidelberg. Seine am Heidelberger Exzellenzcluster
+                „Asia and Europe in a Global Context“ entstandene Dissertation untersucht die
+                Konversion christlicher Europäer zum Islam und ihre Integration in die Militär- und
+                Verwaltungselite des Osmanischen Reiches im späten 16. und frühen 17.
+                Jahrhundert.</b044>
+        </contributor>
+        <language>
+            <b253>01</b253>
+            <b252>ger</b252>
+        </language>
+        <b254>XXIII</b254>
+        <b255>117</b255>
+        <mainsubject sourcename="Publisher">
+            <b191>93</b191>
+            <b068>1.1</b068>
+            <b069>NHAP</b069>
+            <b070>Geschichtsforschung: Quellen</b070>
+        </mainsubject>
+        <mainsubject>
+            <b191>26</b191>
+            <b068>2.0</b068>
+            <b069>1555</b069>
+            <b070>Hardcover, Softcover / Geschichte/Neuzeit bis 1918</b070>
+        </mainsubject>
+        <subject sourcename="DNB">
+            <b067>18</b067>
+            <b069>940</b069>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Habsburg</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Geschenkaustausch</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Osmanisches Reich</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Diplomatiegeschichte</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Frühe Neuzeit</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Diplomatie</b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Materielle Kultur </b070>
+        </subject>
+        <subject>
+            <b067>20</b067>
+            <b070>Habsburgisches Gesandschaftswesen</b070>
+        </subject>
+        <othertext language="ger">
+            <d102>01</d102>
+            <d103>06</d103>
+            <d104>Im Zuge eines "material turn" der historischen Forschung rücken die materiellen
+                Aspekte frühneuzeitlicher Diplomatie zunehmend in den Fokus. Wie wurde Diplomatie
+                finanziert? Welche Objekte wurden im Zuge des diplomatischen Geschenkverkehrs
+                ausgetauscht? Welche Personenkreise wurden mit Gaben und gegebenenfalls
+                Bestechungsgeldern bedacht? Die vorliegende Edition bisher unveröffentlichter
+                Ausgabenabrechnung der kaiserlichen Gesandten in Konstantinopel Joachim von
+                Sinzendorff und Friedrich Preiner aus dem Wiener Haus-, Hof- und Staatsarchiv
+                liefert Antworten auf diese und vielfältige weitere Fragestellungen der neuen
+                Diplomatiegeschichte. Ergänzt um ein umfangreiches Register und einen sachlichen
+                Anmerkungsapparat, der besonderen Wert auf die Identifikation historischer Akteure
+                sowie osmanischer Würdenträger und Fachbegriffe legt, eignet sich dieser Band
+                sowohl für die historische Forschung, als auch für die Verwendung in der Lehre.
+            </d104>
+        </othertext>
+        <mediafile>
+            <f114>04</f114>
+            <f115>03</f115>
+            <f116>01</f116>
+            <f117>http://api.vlb.de/api/v1/cover/9783946531029/m</f117>
+        </mediafile>
+        <publisher>
+            <b291>01</b291> <!-- done -->
+            <b241>05</b241> <!-- TODO press_settings where setting_name ="codeType"  -->
+            <b243>5270863</b243> <!-- TODO press_settings where setting_name ="codeValue"  -->
+            <b081>heiBOOKS</b081> <!-- TODO press_settings where setting_name ="publisher"  -->
+        </publisher>
+        <b209>Heidelberg</b209> <!-- omp.publiction_formats.country_manufacture_code-->
+        <b083>DE</b083> <!-- TODO  omp.presses;.primary_locale -->
+        <b394>04</b394>  <!--TODO falls omp.publication_formats return is_available="04"  where publication_format_settines.setting_name="name" und setting_value="sofcover" 
+falls der omp.publication_dates.date > heute ist gibt mir "02"
+-->
+        <b003>20160315</b003> <!--  omp.publication_dates.date die Verbindung kommt mit Format -->
+        gel bekannt. Maße werden gebraucht für die Lagerlogistik -->
+        <measure>
+        <c093>01</c093>
+        <!---
+        publication_formats
+            height	
+            height_unit_code	
+            width	
+            width_unit_code	
+            thickness	
+            thickness_unit_code	
+            weight	
+            weight_unit_code	
+        -->
+        <!-- Codelist 48. Format: Höhe.-->
+        <c094>210</c094> <!--Musterzahlen-->
+        <c095>mm</c095>
+        </measure>
+        <measure>
+        <c093>02</c093>
+        <!-- Codelist 48. Format: Breite.-->
+        <c094>140</c094> <!--Musterzahlen-->
+        <c095>mm</c095>
+        </measure>
+        <measure>
+        <c093>03</c093>
+        <!-- Codelist 48. Format: Tiefe.-->
+        <c094>20</c094> <!--Musterzahlen-->
+        <c095>mm</c095>
+        </measure>
+        <measure>
+        <c093>08</c093>
+        <!-- Codelist 48. Gewicht.-->
+        <c094>360</c094> <!--Musterzahlen-->
+        <c095>gr</c095>
+        
+        <supplydetail>
+            <supplieridentifier>
+                <j345>05</j345> <!-- TODO press_settings.codeType-->
+                <b244>5270863</b244><!-- TODO press_settings.codeValue -->
+            </supplieridentifier>
+            <j137>heiBOOKS</j137> <!--TODO OMP.omp.press_settings.publisher-->
+            <j292>01</j292>   <!--done-->
+             <!-- <j141>IP</j141> falls publication_format_settings.product_availability_code-->
+            <j396>20</j396> <!-- publication_format_settings.product_availability_code-->
+            <price>
+                <j148>04</j148>
+                <j266>02</j266>
+                <j151>15.40</j151>
+                <j152>EUR</j152>
+                <b251>AT</b251>
+                <j153>R</j153>
+            </price>
+            <price>
+                <j148>02</j148>
+                <j266>02</j266>
+                <j151>17.95</j151>
+                <j152>CHF</j152>
+                <b251>CH</b251>
+                <j153>R</j153>
+            </price>
+            <price>
+                <j148>04</j148>
+                <j266>02</j266>
+                <j151>14.95</j151>
+                <j152>EUR</j152>
+                <b251>DE</b251>
+                <j153>R</j153>
+            </price>
+        </supplydetail>
+    </product>
+
+</ONIXmessage>

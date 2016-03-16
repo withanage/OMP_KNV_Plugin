@@ -150,7 +150,7 @@ biography = ''
   }}
  {{pass}}
 {{
-
+'''
 produkt = '<Product>'
 produkt+='	<Contributor>'
 produkt+='		<SequenceNumber>1</SequenceNumber>'
@@ -165,6 +165,7 @@ produkt+='			<CountryCode>'+'person.country'+'</CountryCode>'
 produkt+='		</ContributorPlace>'
 produkt+='	</Contributor>'
 produkt+='</Product>'
+'''
 }}
 {{#pass}}
 {{
@@ -232,4 +233,4 @@ pass
 
 
 {{}}
-{{=XML(produkt,sanitize=False)}}
+{{=XML(xml_string,sanitize=False)}}
