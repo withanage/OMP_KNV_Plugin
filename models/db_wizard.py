@@ -229,6 +229,7 @@ author_biography = author_biography_pre['setting_value'] if author_biography_pre
 
 db.define_table('t_onix_additionals',
     Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),label=T('Submission id')),
+    Field ('f_publisher_role','string', default='01', label='Publisher Role',requires=IS_IN_SET(('01','02','05','06')) ),
     Field('omp_publisher','string',default=publisher,writable=False,readable=True),
     Field('omp_isbn','string',notnull=True,default=isbn,label=T('ISBN-13'),writable=False),
     Field('f_verlagsverkehrsnummer', type='integer', label=T('Verlagsverkehrsnummer'),writable=False), # TODO anja liefert daten als
@@ -281,7 +282,7 @@ db.define_table('t_onix_additionals',
     Field('f_content_directory', type='string',label=T('Inhaltsverzeichnis')),
     Field('f_tracklist', type='string',label=T('Tracklist bei Musik')),
     Field('f_leseprobe', type='text',label=T('Leseprobe')),
-    Field('f_', type='string',label=T('')),
+   #Field('f_', type='string',label=T('')),
     Field('omp_author_biography', type='text', default=author_biography, label=T('Porträt'),writable=False), #abstract
     Field('f_zolltarifnummer_verzeihnis', type='string', notnull=True,    label=T('Zolltarifnummer Verzeihnis')),
     Field('f_warennummer_ztn', type='string', notnull=True,label=T('Warennummer Ztn')),
@@ -291,8 +292,8 @@ db.define_table('t_onix_additionals',
     Field('f_mehrbaendiger_werke', type='string', notnull=True,  label=T('Mehrbaendiger Werke')),
     Field('f_issn', type='string', notnull=True, label=T('ISSN')),
     format='%(f_verlagsverkehrsnummer)s',
-    migrate=False
-    #redefine=True
+    migrate=True,
+    redefine=True
 )
 
 
@@ -310,12 +311,12 @@ db.define_table("t_knv_metadata",
      Field("rueckenart","string",label=T('Rückenart'), requires=IS_IN_SET(('square','round')), default='round'),
      Field("ansichtsexemplar","string", default="yes",label=T('Ansichtsexemplar'),requires=IS_IN_SET(('yes','no'))),
      Field("laendercode","string",default="DE", label=T('Ländercode'),writable=False),
-     Field("adresszeile1","string",default=" ",label=T('Adresszeile1'),writable=False),
-     Field("adresszeile2","string",default=T('Heidelberg University Publishing'),label=T('Adresszeile2'),writable=False),
-     Field("adresszeile3","string",default=T('c/o Universitätsbibliothek Heidelberg'),label=T('Adresszeile3'),writable=False),
-     Field("ort","string",default="Heidelberg",label=T('Ort'),writable=False),
-     Field("plz","integer",default="69047",label=T('PLZ'), writable=False),
-     Field("strasse_und_nr","string",default="Plöck 107-109",label=T('Straße und Nr.'),writable=False),
+     #Field("adresszeile1","string",default=" ",label=T('Adresszeile1'),writable=False),
+     #Field("adresszeile2","string",default=T('Heidelberg University Publishing'),label=T('Adresszeile2'),writable=False),
+     #Field("adresszeile3","string",default=T('c/o Universitätsbibliothek Heidelberg'),label=T('Adresszeile3'),writable=False),
+     #Field("ort","string",default="Heidelberg",label=T('Ort'),writable=False),
+     #Field("plz","integer",default="69047",label=T('PLZ'), writable=False),
+     #Field("strasse_und_nr","string",default="Plöck 107-109",label=T('Straße und Nr.'),writable=False),
      Field("postfach","string",default="105749",label=T('Postfach'),writable=False),
      Field("speicherung","string",default="yes",label=T('Speicherung'),requires=IS_IN_SET(('yes','temp'))),
      Field("dateiname_pdf_cover","upload",label=T('Dateiname PDF (cover)')),#TODO isbdn ohne bindestirche .cover.pdf automatisch generieren , ein neues feld
