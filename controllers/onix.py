@@ -23,6 +23,15 @@
 # THE SOFTWARE.
 
 def get_version() :
-   return dict()
+  #  codetype  b241
+  submission_id = request.args[0]
+  codeType = db((db.submissions.submission_id == submission_id) &  (db.submissions.context_id==db.press_settings.press_id) &  (db.press_settings.setting_name=='codeType' )).select(db.press_settings.setting_value).first()['setting_value']
+  # codeValue b243
+  codeValue = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='codeValue')).select(db.press_settings.setting_value).first()['setting_value']
+  # publisher 
+  publisher = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='publisher')).select(db.press_settings.setting_value).first()['setting_value']
+  
+  
+  return  locals()
  
   
