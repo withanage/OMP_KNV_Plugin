@@ -23,14 +23,48 @@
 # THE SOFTWARE.
 
 def get_version() :
-  #  codetype  b241
-  submission_id = request.args[0]
-  codeType = db((db.submissions.submission_id == submission_id) &  (db.submissions.context_id==db.press_settings.press_id) &  (db.press_settings.setting_name=='codeType' )).select(db.press_settings.setting_value).first()['setting_value']
-  # codeValue b243
-  codeValue = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='codeValue')).select(db.press_settings.setting_value).first()['setting_value']
-  # publisher 
-  publisher = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='publisher')).select(db.press_settings.setting_value).first()['setting_value']
   
+  submission_id = request.args[0]
+  publication_format_name = request.args[1]
+    
+  #  codetype  b241 
+  codeType = db((db.submissions.submission_id == submission_id) &  (db.submissions.context_id==db.press_settings.press_id) &  (db.press_settings.setting_name=='codeType' )).select(db.press_settings.setting_value).first()
+  if codeType is not None:
+    codeType = codeType['setting_value']
+  else:
+    codeType = ' '
+    
+    
+  
+  # codeValue b243
+  codeValue = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='codeValue')).select(db.press_settings.setting_value).first()
+  if codeValue is not None:
+    codeValue = codeValue['setting_value']
+  else:
+    codeValue = ''
+  
+  # publisher 
+  publisher = db((db.submissions.submission_id == submission_id) & (db.submissions.context_id==db.press_settings.press_id) & (db.press_settings.setting_name=='publisher')).select(db.press_settings.setting_value).first()
+  if publisher is not None:
+    publisher = publisher['setting_value']
+  else:
+    publisher = ''
+  
+  # country_manufacture_code b083
+  country_manufacture_code = db((db.publication_formats.submission_id == submission_id) & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)).select(db.publication_formats.country_manufacture_code).first()
+  
+  if country_manufacture_code is not None:
+    country_manufacture_code = country_manufacture_code['country_manufacture_code']
+  else:
+    country_manufacture_code = ''
+    
+  # publication_available b394
+  publication_available = db((db.publication_formats.submission_id == submission_id)  & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name) ).select(db.publication_formats.is_available).first()
+  if publication_available is not None:
+    publication_available = publication_available['is_available']
+  else:
+    publication_available = ''
+    
   
   return  locals()
  

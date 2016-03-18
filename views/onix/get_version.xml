@@ -132,11 +132,11 @@ submission_id = request.args[0]
             <b291>01</b291> <!-- done -->
             <b241>{{=codeType}}</b241>
             <b243>{{=codeValue}}</b243> 
-            <b081>{{=publisher}}</b081> <!-- TODO press_settings where setting_name ="publisher"  -->
+            <b081>{{=publisher}}</b081> 
         </publisher>
-        <b209>Heidelberg</b209> <!-- omp.publiction_formats.country_manufacture_code-->
-        <b083>DE</b083> <!-- TODO  omp.presses;.primary_locale -->
-        <b394>04</b394>  <!--TODO falls omp.publication_formats return is_available="04"  where publication_format_settines.setting_name="name" und setting_value="sofcover" 
+        <b209>Heidelberg</b209> <!-- TODO ????????????? omp.presses;.primary_locale -->
+        <b083>{{=country_manufacture_code}}</b083> 
+        <b394>{{=publication_available}}</b394>  <!--TODO falls omp.publication_formats return is_available="04"  where publication_format_settines.setting_name="name" und setting_value="sofcover" 
 falls der omp.publication_dates.date > heute ist gibt mir "02"
 -->
         <b003>20160315</b003> <!--  omp.publication_dates.date die Verbindung kommt mit Format -->
