@@ -1,6 +1,9 @@
 {{from gluon.serializers import xml}}
 {{
 #Für Hardcover eine andere XML
+
+submission_id = request.args[0]
+
 }}
 <ONIXmessage release="2.1">
     <header>
@@ -127,9 +130,9 @@
         </mediafile>
         <publisher>
             <b291>01</b291> <!-- done -->
-            <b241>05</b241> <!-- TODO press_settings where setting_name ="codeType"  -->
-            <b243>5270863</b243> <!-- TODO press_settings where setting_name ="codeValue"  -->
-            <b081>heiBOOKS</b081> <!-- TODO press_settings where setting_name ="publisher"  -->
+            <b241>{{=codeType}}</b241>
+            <b243>{{=codeValue}}</b243> 
+            <b081>{{=publisher}}</b081> <!-- TODO press_settings where setting_name ="publisher"  -->
         </publisher>
         <b209>Heidelberg</b209> <!-- omp.publiction_formats.country_manufacture_code-->
         <b083>DE</b083> <!-- TODO  omp.presses;.primary_locale -->
@@ -172,7 +175,7 @@ falls der omp.publication_dates.date > heute ist gibt mir "02"
         <!-- Codelist 48. Gewicht.-->
         <c094>360</c094> <!--Musterzahlen-->
         <c095>gr</c095>
-        
+        </measure>  
         <supplydetail>
             <supplieridentifier>
                 <j345>05</j345> <!-- TODO press_settings.codeType-->
