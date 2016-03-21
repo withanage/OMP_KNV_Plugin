@@ -136,45 +136,30 @@ submission_id = request.args[0]
         </publisher>
         <b209>Heidelberg</b209> <!-- TODO ????????????? omp.presses;.primary_locale -->
         <b083>{{=country_manufacture_code}}</b083> 
-        <b394>{{=publication_available}}</b394>  <!--TODO falls omp.publication_formats return is_available="04"  where publication_format_settines.setting_name="name" und setting_value="sofcover" 
-falls der omp.publication_dates.date > heute ist gibt mir "02"
--->
-        <b003>20160315</b003> <!--  omp.publication_dates.date die Verbindung kommt mit Format -->
-        gel bekannt. Maße werden gebraucht für die Lagerlogistik -->
+        <b394>{{=publication_available}}</b394>  <!-- TODO ???????????    in 43 steht xml-->
+        <b003>{{=publication_date}}</b003> <!--  omp.publication_dates.date die Verbindung kommt mit Format  gel bekannt. Maße werden gebraucht für die Lagerlogistik -->
         <measure>
-        <c093>01</c093>
-        <!---
-        publication_formats
-            height	
-            height_unit_code	
-            width	
-            width_unit_code	
-            thickness	
-            thickness_unit_code	
-            weight	
-            weight_unit_code	
-        -->
-        <!-- Codelist 48. Format: Höhe.-->
-        <c094>210</c094> <!--Musterzahlen-->
-        <c095>mm</c095>
+        <c093>01</c093><!-- Codelist 48. Format: Höhe.-->
+        <c094>{{=height}}</c094> <!--Musterzahlen-->
+        <c095>{{=height_unit_code}}</c095>
         </measure>
         <measure>
         <c093>02</c093>
         <!-- Codelist 48. Format: Breite.-->
-        <c094>140</c094> <!--Musterzahlen-->
-        <c095>mm</c095>
+        <c094>{{=width}}</c094>
+        <c095>{{=width_unit_code}}</c095>
         </measure>
         <measure>
         <c093>03</c093>
         <!-- Codelist 48. Format: Tiefe.-->
-        <c094>20</c094> <!--Musterzahlen-->
-        <c095>mm</c095>
+        <c094>{{=thickness}}</c094>
+        <c095>{{=thickness_unit_code}}</c095>
         </measure>
         <measure>
         <c093>08</c093>
         <!-- Codelist 48. Gewicht.-->
-        <c094>360</c094> <!--Musterzahlen-->
-        <c095>gr</c095>
+        <c094>{{=weight}}</c094> 
+        <c095>{{=weight_unit_code}}</c095>
         </measure>  
         <supplydetail>
             <supplieridentifier>

@@ -21,11 +21,14 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
+import time
 def get_version() :
   
   submission_id = request.args[0]
   publication_format_name = request.args[1]
+  publication_available = ''
+  publication_date = ''
+  height,height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code= '', '', '', '', '', '', '', ''
     
   #  codetype  b241 
   codeType = db((db.submissions.submission_id == submission_id) &  (db.submissions.context_id==db.press_settings.press_id) &  (db.press_settings.setting_name=='codeType' )).select(db.press_settings.setting_value).first()
@@ -59,13 +62,35 @@ def get_version() :
     country_manufacture_code = ''
     
   # publication_available b394
-  publication_available = db((db.publication_formats.submission_id == submission_id)  & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name) ).select(db.publication_formats.is_available).first()
-  if publication_available is not None:
-    publication_available = publication_available['is_available']
+  publication_results = db((db.publication_formats.submission_id == submission_id)  & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name) & (db.publication_formats.publication_format_id == db.publication_dates.publication_format_id)).select(db.publication_formats.is_available, db.publication_dates.date).first()
+  if publication_results is not None:
+     if publication_results.publication_formats is not None:
+       publication_available = publication_results.publication_formats['is_available']
+       if publication_available == 1:
+          publication_date =  publication_results.publication_dates.date
+          if publication_results.publication_dates.date  > time.strftime("%Y%m%d") :
+            publication_available = '02'
+          else:
+            publication_available = '04'
+       else:
+           publication_available = ''  
+     else: 
+       publication_available = ''
   else:
     publication_available = ''
     
+  physical_info = db((db.publication_formats.submission_id == submission_id) & (db.publication_format_settings.setting_value == publication_format_name)   & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id)).select(db.publication_formats.height, db.publication_formats.height_unit_code, db.publication_formats.width, db.publication_formats.width_unit_code, db.publication_formats.thickness,db.publication_formats.thickness_unit_code, db.publication_formats.weight, db.publication_formats.weight_unit_code).first()
+  if physical_info is not None:
+     height = physical_info['height']
+     height_unit_code = physical_info['height_unit_code']
+     width = physical_info['width']
+     width_unit_code = physical_info['width_unit_code']
+     thickness = physical_info['thickness']
+     thickness_unit_code = physical_info['thickness_unit_code']
+     weight = physical_info['weight']
+     weight_unit_code = physical_info['weight_unit_code']
   
+
   return  locals()
  
   

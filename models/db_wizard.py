@@ -162,6 +162,18 @@ db.define_table("user_group_settings",
      Field("setting_type","string"),
      migrate = False
 )
+
+db.define_table("publication_dates",
+Field("publication_date_id","integer"),
+Field("publication_format_id", "integer"),
+Field("role","string"),
+Field("date_format", "string"),
+Field("date", "string"),
+migrate = False
+)
+
+
+
 # read omp values
 submission_id       = request.args(0) if  request.args(0) else 0
 error_code          = T('in OMP nicht angegeben')
@@ -292,7 +304,7 @@ db.define_table('t_onix_additionals',
     Field('f_mehrbaendiger_werke', type='string', notnull=True,  label=T('Mehrbaendiger Werke')),
     Field('f_issn', type='string', notnull=True, label=T('ISSN')),
     format='%(f_verlagsverkehrsnummer)s',
-    migrate=True,
+    migrate=False,
     redefine=True
 )
 
