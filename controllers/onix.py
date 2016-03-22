@@ -33,7 +33,7 @@ def get_version() :
   sent_date = ''
   entry_key = ''
   notification_type = ''
-  locale = [ 'en_US','de_DE']
+  locale = [ 'en_US','de_DE'] #  Priority is larger with the index
   title = ''
   sub_title = ''
   
@@ -45,7 +45,7 @@ def get_version() :
     language = request.vars.language
   else:
     for i in locale:
-      language = locale[i]
+      language = i
   # --------------------------------------------------------------------------------------------
     
   #  codetype  b241 
@@ -160,6 +160,6 @@ def get_version() :
   else:
     sub_title = ''
 
-      
+  prices = db((db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) &  (db.publication_format_settings.setting_value == publication_format_name) &  (db.publication_formats.publication_format_id ==db.markets.publication_format_id) ).select(db.markets.price_type_code,db.markets.price, db.markets.currency_code,db.markets.countries_included, db.markets.tax_rate_code ,  groupby=db.markets.market_id)
   return locals()
  
