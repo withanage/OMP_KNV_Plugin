@@ -7,34 +7,40 @@ submission_id = request.args[0]
 }}
 <ONIXmessage release="2.1">
     <header>
-        <m174>VLB - Verzeichnis Lieferbarer Bücher</m174> <!-- t_knv_metadataomp_publisher -->
-        <m175>MVB Marketing- und Verlagsservice des Buchhandels GmbH, 069.1306.550</m175> <!-- -->
-        <m283>serviceline@mvb-online.de</m283>
-        <m182>20160316</m182>
+        <m174>Universitätsbibliothek Heidelberg</m174> 
+        <m175> Anja Konopka, +49 6221 54 2569</m175> 
+        <m283>konopka@ub.uni-heidelberg.de</m283>
+        <m182>20160316</m182> <!--TODO kommt aus knv_onix_metadata.f_sent_date -->
     </header>
-    <product datestamp="20160315">
-        <a001>a3902356b96446a885724fe86af27dc7</a001>
+    <product datestamp="{{=publication_date}}"> <!--TODO-->
+        <a001>{{=isbn_number}}</a001> <!--- isbn  omp.identification_codes where code = 15 omp. identification_codes value  -->
         <a002>03</a002>
+       
         <productidentifier>
-            <b221>02</b221>
-            <b244>3946531024</b244>
+            <b221>15</b221>  <!--   omp.identification_codes.code   -->
+            <b244>{{=isbn_number}}</b244> <!--   omp.identification_codes.vlaue   -->
         </productidentifier>
-        <productidentifier>
-            <b221>03</b221>
-            <b244>9783946531029</b244>
-        </productidentifier>
-        <productidentifier>
-            <b221>15</b221>
-            <b244>9783946531029</b244>
-        </productidentifier>
-        <b012>BC</b012>
+        <b012>BC</b012> <!-- publication_formats.entry_key-->
+         <!--series>
+        <seriesidentifier>
+            <b273>04</b273>
+            <b244>XCX68</b244>
+        </seriesidentifier>
+        <b018>Universitätsmuseum Heidelberg. Kataloge</b018>
         <title>
             <b202>01</b202>
-            <b203>Der Preis der Diplomatie</b203>
-            <b029>Die Abrechnungen der kaiserlichen Gesandten an der Hohen Pforte, 1580–1583</b029>
+            <b203>Universitätsmuseum Heidelberg. Kataloge</b203>
         </title>
+        </series-->
+        <title>
+            <b202>01</b202> <!--fest -->
+            <b203></b203> <!--titel vom monographie -->
+            <b029>Unter titel</b029>  <!--untertitel vom monographie -->
+        </title>
+        
+        <!--- Contributer ist eine schleife-->
         <contributor>
-            <b034>1</b034>
+            <b034>1</b034> <!-- id 1 ...n-->
             <b035>B01</b035>
             <b340>1</b340>
             <b036>Tobias P. Graf</b036>
@@ -77,34 +83,7 @@ submission_id = request.args[0]
             <b067>20</b067>
             <b070>Habsburg</b070>
         </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Geschenkaustausch</b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Osmanisches Reich</b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Diplomatiegeschichte</b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Frühe Neuzeit</b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Diplomatie</b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Materielle Kultur </b070>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Habsburgisches Gesandschaftswesen</b070>
-        </subject>
+       
         <othertext language="ger">
             <d102>01</d102>
             <d103>06</d103>
@@ -163,37 +142,23 @@ submission_id = request.args[0]
         </measure>  
         <supplydetail>
             <supplieridentifier>
-                <j345>05</j345> <!-- TODO press_settings.codeType-->
-                <b244>5270863</b244><!-- TODO press_settings.codeValue -->
+                <j345>{{=press_code_type}}</j345> <!--  press_settings.codeType-->
+                <b244>{{=press_code_value}}</b244><!-- press_settings.codeValue -->
             </supplieridentifier>
-            <j137>heiBOOKS</j137> <!--TODO OMP.omp.press_settings.publisher-->
+            <j137>{{=publisher}}</j137> <!-- OMP.omp.press_settings.publisher-->
             <j292>01</j292>   <!--done-->
              <!-- <j141>IP</j141> falls publication_format_settings.product_availability_code-->
-            <j396>20</j396> <!-- publication_format_settings.product_availability_code-->
+            <j396>{{=product_availability_code}}</j396> <!-- publication_format_settings.product_availability_code-->
+            <!-- wiederholung keine first()-->
             <price>
-                <j148>04</j148>
-                <j266>02</j266>
-                <j151>15.40</j151>
-                <j152>EUR</j152>
-                <b251>AT</b251>
-                <j153>R</j153>
+                <j148>04</j148> <!-- PriceTypeCode -->     markets.price_type_code ->
+                <j266>02</j266> - fest -->
+                <j151>15.40</j151>      <!-- Bei Eingabe soll nur Fließkommazahlen ohne , PriceAmount markets.price -->
+                <j152>EUR</j152> <!--- markets.currency_code-->
+                <b251>AT</b251> <!--- markets.countries_included-->
+                <j153>R</j153> <!--- markets.tax_rate_code-->
             </price>
-            <price>
-                <j148>02</j148>
-                <j266>02</j266>
-                <j151>17.95</j151>
-                <j152>CHF</j152>
-                <b251>CH</b251>
-                <j153>R</j153>
-            </price>
-            <price>
-                <j148>04</j148>
-                <j266>02</j266>
-                <j151>14.95</j151>
-                <j152>EUR</j152>
-                <b251>DE</b251>
-                <j153>R</j153>
-            </price>
+            
         </supplydetail>
     </product>
 

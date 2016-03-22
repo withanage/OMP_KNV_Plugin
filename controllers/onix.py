@@ -90,7 +90,25 @@ def get_version() :
      weight = physical_info['weight']
      weight_unit_code = physical_info['weight_unit_code']
   
-
+  press_code_type  = db((db.submissions.context_id ==db.press_settings.press_id) & (db.press_settings.setting_name == "codeType")).select(db.press_settings.setting_value).first()
+  if press_code_type is not None:
+    press_code_type = press_code_type['setting_value']
+  else:
+    press_code_type = ''
+  
+  press_code_value  = db((db.submissions.context_id ==db.press_settings.press_id) & (db.press_settings.setting_name == "codeValue")).select(db.press_settings.setting_value).first()
+  if press_code_value is not None:
+    press_code_value = press_code_value['setting_value']
+  else:
+    press_code_value = ''
+  
+  publisher  = db((db.submissions.context_id ==db.press_settings.press_id) & (db.press_settings.setting_name == "publisher")).select(db.press_settings.setting_value).first()
+  if publisher is not None:
+    publisher = publisher['setting_value']
+  else:
+    publisher = ''
+  
+  product_availability_code = db((db.publication_formats.submission_id == submission_id) & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)).select(db.publication_formats.product_availability_code).first()  
   return  locals()
  
   

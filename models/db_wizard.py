@@ -164,12 +164,12 @@ db.define_table("user_group_settings",
 )
 
 db.define_table("publication_dates",
-Field("publication_date_id","integer"),
-Field("publication_format_id", "integer"),
-Field("role","string"),
-Field("date_format", "string"),
-Field("date", "string"),
-migrate = False
+    Field("publication_date_id","integer"),
+    Field("publication_format_id", "integer"),
+    Field("role","string"),
+    Field("date_format", "string"),
+    Field("date", "string"),
+    migrate = False
 )
 
 
@@ -308,7 +308,16 @@ db.define_table('t_onix_additionals',
     redefine=True
 )
 
-
+b.define_table("t_knv_metadata",
+     Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),
+          label=T('Submission id')),
+     Field('f_sent_date',label=T('Sent Date'), 'date' ,dafault="heute", readable = False, writable = False),
+     #Field ('f_update_type_code', 'string',label='NotificationType')
+     
+ migrate=True,
+ redefine=True
+)
+'''
 db.define_table("t_knv_metadata",
      Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),
           label=T('Submission id')),
@@ -354,3 +363,4 @@ db.define_table("t_knv_metadata",
      migrate=False,
      redefine=True
 )
+'''
