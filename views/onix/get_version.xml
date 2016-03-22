@@ -10,17 +10,17 @@ submission_id = request.args[0]
         <m174>Universitätsbibliothek Heidelberg</m174> 
         <m175> Anja Konopka, +49 6221 54 2569</m175> 
         <m283>konopka@ub.uni-heidelberg.de</m283>
-        <m182>20160316</m182> <!--TODO kommt aus knv_onix_metadata.f_sent_date -->
+        <m182>{{=sent_date}}</m182> <!--TODO kommt aus t_onix_additionals.f_sent_date -->
     </header>
     <product datestamp="{{=publication_date}}"> <!--TODO-->
-        <a001>{{=isbn_number}}</a001> <!--- isbn  omp.identification_codes where code = 15 omp. identification_codes value  -->
-        <a002>03</a002>
+        <a001>{{=isbn_number}}</a001>
+        <a002>{{=notification_type}}</a002>
        
         <productidentifier>
-            <b221>15</b221>  <!--   omp.identification_codes.code   -->
-            <b244>{{=isbn_number}}</b244> <!--   omp.identification_codes.vlaue   -->
+            <b221>{{=notification_type}}</b221>  
+            <b244>{{=isbn_number}}</b244> 
         </productidentifier>
-        <b012>BC</b012> <!-- publication_formats.entry_key-->
+        <b012>{{=entry_key}}</b012> 
          <!--series>
         <seriesidentifier>
             <b273>04</b273>
@@ -33,9 +33,9 @@ submission_id = request.args[0]
         </title>
         </series-->
         <title>
-            <b202>01</b202> <!--fest -->
-            <b203></b203> <!--titel vom monographie -->
-            <b029>Unter titel</b029>  <!--untertitel vom monographie -->
+            <b202>01</b202> 
+            <b203>{{=title}}</b203> <!--titel vom monographie -->
+            <b029>{{=sub_title}}</b029>  <!--untertitel vom monographie -->
         </title>
         
         <!--- Contributer ist eine schleife-->
