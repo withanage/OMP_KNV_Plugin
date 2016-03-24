@@ -41,11 +41,36 @@ submission_id = request.args[0]
         </title>
         
         <!--- Contributer ist eine schleife-->
+        {{ 
+        i= 0
+        for author in authors:
+        =XML('<contributor>')
+        if author.author_settings['setting_name']=='biography':
+        =XML('<b034>')
+          =str(i)
+        =XML('</b034>')
+        =XML('<b035>')
+          ='B01'
+        =XML('</b035>')
+        =XML('<b340>')
+          =str(i)
+        =XML('</b340>')
+        =XML('<b036>')
+          =" ".join([author.authors['first_name'],author.authors['middle_name'],author.authors['last_name']])
+        =XML('</b036>')
+        =XML('<b037>')
+          =" ".join([", ".join([author.authors['last_name'], author.authors['first_name']]), author.authors['middle_name']])
+        =XML('</b037>')
+        =author
+        pass
+        =XML('</contributor>')
+        =BR()
+        i+= 1
+        pass
+        }}
         <contributor>
-            <b034>1</b034> <!-- id 1 ...n-->
-            <b035>B01</b035>
-            <b340>1</b340>
-            <b036>Tobias P. Graf</b036>
+        
+
             <b037>Graf, Tobias P.</b037>
             <b039>Tobias P.</b039>
             <b040>Graf</b040>
