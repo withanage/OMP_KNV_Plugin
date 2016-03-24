@@ -161,5 +161,6 @@ def get_version() :
     sub_title = ''
 
   prices = db((db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) &  (db.publication_format_settings.setting_value == publication_format_name) &  (db.publication_formats.publication_format_id ==db.markets.publication_format_id) ).select(db.markets.price_type_code,db.markets.price, db.markets.currency_code,db.markets.countries_included, db.markets.tax_rate_code ,  groupby=db.markets.market_id)
+  
   return locals()
  

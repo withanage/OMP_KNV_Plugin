@@ -1,4 +1,6 @@
-{{from gluon.serializers import xml}}
+{{from gluon.serializers import xml
+import re
+}}
 {{
 #Für Hardcover eine andere XML
 
@@ -156,7 +158,28 @@ submission_id = request.args[0]
                 <j266>02</j266> 
                 <j151>{{=price['price']}}</j151>      
                 <j152>{{=price['currency_code']}}</j152>
-                <b251>{{=price['countries_included']}}</b251> 
+                <b251>
+                  {{t=re.findall('{(.*)}',price['countries_included'])}}
+                  {{
+                  if len(t[0]) > 0:
+                    u=t[0].split(':')
+                   if len(u)==4:
+                    y = u[3]
+                   z = re.findall('[^\W\d_]+',y)
+                  if len(z) > 0:
+                   =z[0]
+                  else:
+                   =''
+                  pass
+                  else:
+                   =''
+                  pass
+                  
+                  else:
+                  =''
+                  pass
+                  }}
+                </b251> 
                 <j153>{{=price['tax_rate_code']}}</j153> 
             </price>
             {{pass}}
