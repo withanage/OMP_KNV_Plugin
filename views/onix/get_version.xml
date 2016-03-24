@@ -42,18 +42,16 @@ submission_id = request.args[0]
         
         <!--- Contributer ist eine schleife-->
         {{ 
-        i= 0
         for author in authors:
         =XML('<contributor>')
-        if author.author_settings['setting_name']=='biography':
         =XML('<b034>')
-          =str(i)
+          =author.authors.seq
         =XML('</b034>')
         =XML('<b035>')
           ='B01'
         =XML('</b035>')
         =XML('<b340>')
-          =str(i)
+          =author.authors.seq
         =XML('</b340>')
         =XML('<b036>')
           =" ".join([author.authors['first_name'],author.authors['middle_name'],author.authors['last_name']])
@@ -61,35 +59,32 @@ submission_id = request.args[0]
         =XML('<b037>')
           =" ".join([", ".join([author.authors['last_name'], author.authors['first_name']]), author.authors['middle_name']])
         =XML('</b037>')
-        =author
-        pass
+        =XML('<b039>')
+          =" ".join([author.authors['first_name'],author.authors['middle_name']])
+        =XML('</b039>')
+        =XML('<b040>')
+          =author.authors['last_name']
+        =XML('</b040>')
+        =XML('<b044>')
+            =XML(author.author_settings['setting_value'])
+        =XML('</b044>')
+        
+        
         =XML('</contributor>')
         =BR()
-        i+= 1
+      
         pass
         }}
-        <contributor>
+ 
         
 
-            <b037>Graf, Tobias P.</b037>
-            <b039>Tobias P.</b039>
-            <b040>Graf</b040>
-            <b044>Tobias P. Graf hat an der University of Cambridge Geschichte studiert und ist seit
-                2015 Postdoktorand im von der Fritz Thyssen Stiftung geförderten Forschungsprojekt
-                „Wissen und politische Entscheidungsfindung in der Frühen Neuzeit am Beispiel des
-                österreichisch-habsburgischen Auslandsgeheimdienstwesens“ am Historischen Seminar
-                der Ruprecht-Karls-Universität Heidelberg. Seine am Heidelberger Exzellenzcluster
-                „Asia and Europe in a Global Context“ entstandene Dissertation untersucht die
-                Konversion christlicher Europäer zum Islam und ihre Integration in die Militär- und
-                Verwaltungselite des Osmanischen Reiches im späten 16. und frühen 17.
-                Jahrhundert.</b044>
-        </contributor>
+     
         <language>
             <b253>01</b253>
-            <b252>ger</b252>
+            <b252>{{=published_language}}</b252>
         </language>
-        <b254>XXIII</b254>
-        <b255>117</b255>
+        <b254>{{=pages_roman}}</b254>
+        <b255>{{=pages_arabic}}</b255>
         <mainsubject sourcename="Publisher">
             <b191>93</b191>
             <b068>1.1</b068>

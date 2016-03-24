@@ -33,9 +33,9 @@ def get_version() :
   sent_date = ''
   entry_key = ''
   notification_type = ''
-  locale = [ 'en_US','de_DE'] #  Priority is larger with the index
   title = ''
   sub_title = ''
+  dict_languages={'de_DE':'ger','en_US':'eng'}
   
   
   language = ''
@@ -43,9 +43,6 @@ def get_version() :
    
   if request.vars.language:
     language = request.vars.language
-  else:
-    for i in locale:
-      language = i
   # --------------------------------------------------------------------------------------------
     
   #  codetype  b241 
@@ -162,6 +159,22 @@ def get_version() :
 
   prices = db((db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) &  (db.publication_format_settings.setting_value == publication_format_name) &  (db.publication_formats.publication_format_id ==db.markets.publication_format_id) ).select(db.markets.price_type_code,db.markets.price, db.markets.currency_code,db.markets.countries_included, db.markets.tax_rate_code ,  groupby=db.markets.market_id)
   # wir nehmen an, dass omp beim Anlegen eines Benutzers in der Tabelle author_settings bibliography und affiliation automatisch einträgt 
-  authors = db((db.authors.submission_id == submission_id) & (db.authors.author_id == db.author_settings.author_id)).select(db.authors.first_name, db.authors.middle_name, db.authors.last_name, db.author_settings.setting_name, db.author_settings.setting_value, orderby=db.author_settings.setting_name,  groupby=db.author_settings.setting_name)
+  authors = db((db.authors.submission_id == submission_id) & (db.authors.author_id == db.author_settings.author_id) & (db.author_settings['setting_name']=='biography')).select(db.authors.first_name, db.authors.middle_name, db.authors.last_name, db.author_settings.setting_name, db.author_settings.setting_value, db.authors.seq, orderby=db.authors.seq, groupby=db.authors.author_id)
+  
+  published_language_omp = db((db.submissions.submission_id == submission_id)).select(db.submissions.locale).first()['locale']
+  published_language = dict_languages[published_language_omp]
+  
+  pages_roman = db((db.t_onix_additionals.submission_id == submission_id)).select(db.t_onix_additionals.f_pages_roman).first()
+  if pages_roman is not None:
+    pages_roman = pages_roman['f_pages_roman']
+  else:
+    pages_roman = ''
+
+  pages_arabic = db((db.t_onix_additionals.submission_id == submission_id)).select(db.t_onix_additionals.f_pages_arabic).first()
+  if pages_arabic is not None:
+    pages_arabic = pages_arabic['f_pages_arabic']
+  else:
+    pages_arabic = ''
+  
   return locals()
  
