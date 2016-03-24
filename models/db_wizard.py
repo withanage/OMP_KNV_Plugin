@@ -1,5 +1,5 @@
 ### we prepend t_ to tablenames and f_ to fieldnames for disambiguity
-
+import datetime
 
 ########################################
 
@@ -172,6 +172,29 @@ db.define_table("publication_dates",
     migrate = False
 )
 
+db.define_table("markets",
+  Field("market_id","integer"),
+  Field("publication_format_id","interger"),
+  Field("countries_included","string"),
+  Field("countries_excluded","string"),
+  Field("regions_included","string"),
+  Field("regions_excluded","string"),
+  Field("market_date_role","string"),
+  Field("market_date_format","string"),
+  Field("market_date","string"),
+  Field("price","string"),
+  Field("discount","string"),
+  Field("price_type_code","string"),
+  Field("currency_code","string"),
+  Field("tax_rate_code","string"),
+  Field("tax_type_code","string"),
+  Field("agent_id","interger"),
+  Field("supplier_id","interger"),
+
+ migrate = False
+ )
+
+
 
 
 # read omp values
@@ -237,7 +260,7 @@ author_biography = author_biography_pre['setting_value'] if author_biography_pre
 
 
 #
-
+'''
 
 db.define_table('t_onix_additionals',
     Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),label=T('Submission id')),
@@ -307,17 +330,17 @@ db.define_table('t_onix_additionals',
     migrate=False,
     redefine=True
 )
-
-b.define_table("t_knv_metadata",
+'''
+db.define_table("t_onix_additionals",
      Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),
           label=T('Submission id')),
-     Field('f_sent_date',label=T('Sent Date'), 'date' ,dafault="heute", readable = False, writable = False),
+     Field('f_sent_date', 'date', label=T('Sent Date') , default=datetime.datetime.now(), readable = False, writable = False),
      #Field ('f_update_type_code', 'string',label='NotificationType')
      
  migrate=True,
  redefine=True
 )
-'''
+
 db.define_table("t_knv_metadata",
      Field('submission_id', type='integer',readable=True,writable=False,default=request.args(0),
           label=T('Submission id')),
@@ -363,4 +386,3 @@ db.define_table("t_knv_metadata",
      migrate=False,
      redefine=True
 )
-'''

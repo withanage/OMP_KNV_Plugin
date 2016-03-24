@@ -1,4 +1,6 @@
-{{from gluon.serializers import xml}}
+{{from gluon.serializers import xml
+import re
+}}
 {{
 #Für Hardcover eine andere XML
 
@@ -10,17 +12,17 @@ submission_id = request.args[0]
         <m174>Universitätsbibliothek Heidelberg</m174> 
         <m175> Anja Konopka, +49 6221 54 2569</m175> 
         <m283>konopka@ub.uni-heidelberg.de</m283>
-        <m182>20160316</m182> <!--TODO kommt aus knv_onix_metadata.f_sent_date -->
+        <m182>{{=sent_date}}</m182> <!--TODO kommt aus t_onix_additionals.f_sent_date -->
     </header>
     <product datestamp="{{=publication_date}}"> <!--TODO-->
-        <a001>{{=isbn_number}}</a001> <!--- isbn  omp.identification_codes where code = 15 omp. identification_codes value  -->
-        <a002>03</a002>
+        <a001>{{=isbn_number}}</a001>
+        <a002>{{=notification_type}}</a002>
        
         <productidentifier>
-            <b221>15</b221>  <!--   omp.identification_codes.code   -->
-            <b244>{{=isbn_number}}</b244> <!--   omp.identification_codes.vlaue   -->
+            <b221>{{=notification_type}}</b221>  
+            <b244>{{=isbn_number}}</b244> 
         </productidentifier>
-        <b012>BC</b012> <!-- publication_formats.entry_key-->
+        <b012>{{=entry_key}}</b012> 
          <!--series>
         <seriesidentifier>
             <b273>04</b273>
@@ -33,9 +35,9 @@ submission_id = request.args[0]
         </title>
         </series-->
         <title>
-            <b202>01</b202> <!--fest -->
-            <b203></b203> <!--titel vom monographie -->
-            <b029>Unter titel</b029>  <!--untertitel vom monographie -->
+            <b202>01</b202> 
+            <b203>{{=title}}</b203>
+            <b029>{{=sub_title}}</b029> 
         </title>
         
         <!--- Contributer ist eine schleife-->
@@ -150,14 +152,39 @@ submission_id = request.args[0]
              <!-- <j141>IP</j141> falls publication_format_settings.product_availability_code-->
             <j396>{{=product_availability_code}}</j396> <!-- publication_format_settings.product_availability_code-->
             <!-- wiederholung keine first()-->
+            {{for price in prices:}}
             <price>
-                <j148>04</j148> <!-- PriceTypeCode -->     markets.price_type_code ->
-                <j266>02</j266> - fest -->
-                <j151>15.40</j151>      <!-- Bei Eingabe soll nur Fließkommazahlen ohne , PriceAmount markets.price -->
-                <j152>EUR</j152> <!--- markets.currency_code-->
-                <b251>AT</b251> <!--- markets.countries_included-->
-                <j153>R</j153> <!--- markets.tax_rate_code-->
+                <j148>{{=price['price_type_code']}}</j148>
+                <j266>02</j266> 
+                <j151>{{=price['price']}}</j151>      
+                <j152>{{=price['currency_code']}}</j152>
+                <b251>
+                  {{t=re.findall('{(.*)}',price['countries_included'])}}
+                  {{
+                  if len(t[0]) > 0:
+                    u=t[0].split(':')
+                   if len(u)==4:
+                    y = u[3]
+                   z = re.findall('[^\W\d_]+',y)
+                  if len(z) > 0:
+                   =z[0]
+                  else:
+                   =''
+                  pass
+                  else:
+                   =''
+                  pass
+                  
+                  else:
+                  =''
+                  pass
+                  }}
+                </b251> 
+                <j153>{{=price['tax_rate_code']}}</j153> 
             </price>
+            {{pass}}
+               
+            
             
         </supplydetail>
     </product>

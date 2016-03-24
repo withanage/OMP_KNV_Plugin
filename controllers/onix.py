@@ -29,6 +29,24 @@ def get_version() :
   publication_available = ''
   publication_date = ''
   height,height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code= '', '', '', '', '', '', '', ''
+  isbn_number = ''
+  sent_date = ''
+  entry_key = ''
+  notification_type = ''
+  locale = [ 'en_US','de_DE'] #  Priority is larger with the index
+  title = ''
+  sub_title = ''
+  
+  
+  language = ''
+  
+   
+  if request.vars.language:
+    language = request.vars.language
+  else:
+    for i in locale:
+      language = i
+  # --------------------------------------------------------------------------------------------
     
   #  codetype  b241 
   codeType = db((db.submissions.submission_id == submission_id) &  (db.submissions.context_id==db.press_settings.press_id) &  (db.press_settings.setting_name=='codeType' )).select(db.press_settings.setting_value).first()
@@ -109,6 +127,40 @@ def get_version() :
     publisher = ''
   
   product_availability_code = db((db.publication_formats.submission_id == submission_id) & (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)).select(db.publication_formats.product_availability_code).first()  
-  return  locals()
- 
+  isbn_number =  db( (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)& (db.publication_formats.submission_id == submission_id) & (db.publication_formats.publication_format_id == db.identification_codes.publication_format_id)).select(db.identification_codes.value).first()
+  if isbn_number is not None:
+    isbn_number = isbn_number['value']
+  else :
+    isbn_number = ''
+  sent_date = db(db.t_onix_additionals.submission_id == submission_id).select(db.t_onix_additionals.f_sent_date).first()
+  if sent_date is not None:
+    sent_date = sent_date['f_sent_date']
+  else:
+    sent_date = ''
   
+  notification_type =  db( (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)& (db.publication_formats.submission_id == submission_id) & (db.publication_formats.publication_format_id == db.identification_codes.publication_format_id)).select(db.identification_codes.code).first()
+  if notification_type is not None:
+    notification_type = notification_type['code']
+  else :
+    notification_type = ''
+  entry_key = db( (db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) & (db.publication_format_settings.setting_value == publication_format_name)& (db.publication_formats.submission_id == submission_id)).select(db.publication_formats.entry_key).first() 
+  if entry_key is not None:
+    entry_key = entry_key['entry_key']
+  else:
+    entry_key = ''
+  title = db((db.submission_settings.locale == language) & (db.submission_settings.submission_id == submission_id) & (db.submission_settings.setting_name == 'title')).select(db.submission_settings.setting_value).first()
+  if title is not None:
+    title = title['setting_value']
+  else:
+    title = ''
+  
+  sub_title = db((db.submission_settings.locale == language) & (db.submission_settings.submission_id == submission_id) & (db.submission_settings.setting_name == 'subtitle')).select(db.submission_settings.setting_value).first()
+  if sub_title is not None:
+    sub_title = sub_title['setting_value']
+  else:
+    sub_title = ''
+
+  prices = db((db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) &  (db.publication_format_settings.setting_value == publication_format_name) &  (db.publication_formats.publication_format_id ==db.markets.publication_format_id) ).select(db.markets.price_type_code,db.markets.price, db.markets.currency_code,db.markets.countries_included, db.markets.tax_rate_code ,  groupby=db.markets.market_id)
+  
+  return locals()
+ 
