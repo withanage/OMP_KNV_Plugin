@@ -161,6 +161,7 @@ def get_version() :
     sub_title = ''
 
   prices = db((db.publication_formats.publication_format_id == db.publication_format_settings.publication_format_id) &  (db.publication_format_settings.setting_value == publication_format_name) &  (db.publication_formats.publication_format_id ==db.markets.publication_format_id) ).select(db.markets.price_type_code,db.markets.price, db.markets.currency_code,db.markets.countries_included, db.markets.tax_rate_code ,  groupby=db.markets.market_id)
-  
+  # wir nehmen an, dass omp beim Anlegen eines Benutzers in der Tabelle author_settings bibliography und affiliation automatisch einträgt 
+  authors = db((db.authors.submission_id == submission_id) & (db.authors.author_id == db.author_settings.author_id)).select(db.authors.first_name, db.authors.middle_name, db.authors.last_name, db.author_settings.setting_name, db.author_settings.setting_value, orderby=db.author_settings.setting_name,  groupby=db.author_settings.setting_name)
   return locals()
  
