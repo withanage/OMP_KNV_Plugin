@@ -6,7 +6,9 @@ The print-on-demand service of KNV (Koch, Neff & Volckmar GmbH) requires for eac
 * 1 XML file in the ONIX data format containing metadata
 * 1 XML file in a local scheme, defined by KNV, containing metadata
 
-Administration and maintenance of metadata can be realised by the use of the Open Monograph Press (OMP). Since OMP is not able to export ONIX- and KNV-XML files, it is necessary to create a tool which can provide those files. The Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. For metadata **not** entered into OMP, the Metadata-Export Tool provides extra form-based input masks.
+Administration and maintenance of metadata can be realised by the use of the Open Monograph Press (OMP). Since OMP is not able to export ONIX- and KNV-XML files, it is necessary to create a tool which can provide those files. The Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. For metadata **not** entered into OMP, the tool provides extra form-based input masks.
+
+The Metadata-Export Tool should be web-based and should be able to validate metadata and to export XML files.
 
 ## Requirements
 
