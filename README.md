@@ -42,7 +42,12 @@ The open source framework [web2py](http://web2py.com/books/default/chapter/29/01
 
 ## User Manual
 
+Figure 1 shows the index page of the Metadata-Export Tool. By clicking on the 'Bücher' hyperlink in the navigation menu, you can see a table consisting of six columns: 1) submission ID, 2) setting value (title), 3) date submitted, 4) status, 5) KNV-XML and 6) ONIX. In the status column you can see if the metadata of a monograph is already sent to KNV or if it has still to be done by clicking on a hyperlink. In the last to columns you can find hyperlinks for downloading the KNV- and the ONIX-XML file.
+
 ### ONIX-XML export
+ 
+Screenshot von Link einfügen
 
 ### KNV-XML export
 
+Screenshot von Link einfügen
