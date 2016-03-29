@@ -31,13 +31,19 @@ XML (Extensible Markup Language) is a text-based data format for exchanging hier
 
 ### ONIX
 
-ONIX (Online Information Exchange) is an XML-based data format
+ONIX (Online Information Exchange) is an XML-based data format found by  EDItEUR, an  international organization coordinating development of the standards in e-commerce. ONIX data format is used to exchange bibliographic and product information among publishers, booksellers, libraries and other stakeholders in the book trade.
 
-* the open source Python framework web2py
+### web2py
 
-* the web-based collaboration tool GitHub
+The open source framwork web2py, written in the Python programming language, is used for the development of database-based software. The Python framework web2py includes all the components which are needed to build fully functional web applications.
 
-* the simplified markup language Markdown
+### GitHub
+
+GitHub is a web-based online service providing software development projects which are saved in repositories. This service is also called “filehosting”. It serves to distribute and to manage source codes.
+
+### Markdown
+
+Markdown is a simplified and easy readable markup language. It is often used for readme datas on platforms such as for example GitHub.
 
 ## User Manual
 
