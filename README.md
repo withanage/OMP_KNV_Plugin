@@ -23,7 +23,7 @@ Following requirements are necessary for the use of the Metadata-Export tool:
 
 ## Technologies
 
-Following technologies and software are used in the development of the Metadata-Export tool: XML, ONIX, web2py, GitHub and Markdown.
+Following technologies and software are used in the development of the Metadata-Export tool: XML, ONIX, web2py and Markdown.
 
 ### XML
 
@@ -37,13 +37,9 @@ ONIX (Online Information Exchange) is an XML-based data format found by  EDItEUR
 
 The open source framwork web2py, written in the Python programming language, is used for the development of database-based software. The Python framework web2py includes all the components which are needed to build fully functional web applications.
 
-### GitHub
-
-GitHub is a web-based online service providing software development projects which are saved in repositories. This service is also called “filehosting”. It serves to distribute and to manage source codes.
-
 ### Markdown
 
-Markdown is a simplified and easy readable markup language. It is often used for readme datas on platforms such as for example GitHub.
+Markdown is a simplified and easy readable markup language. Texts written in Markdown language can be automatically converted into other text formats such as PDF, HTML and MS-Word.
 
 ## User Manual
 
