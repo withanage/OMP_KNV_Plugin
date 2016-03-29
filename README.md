@@ -1,6 +1,12 @@
 # Metadata-Export Tool
 
-The Metadata-Export Tool reads metadata entered into the Open Monograph Press (OMP) and converts it into two XML formats: ONIX (for different book types and different onix versions) and a local scheme defined by the print-on-demand service of KNV.
+The print-on-demand service of KNV (Koch, Neff & Volckmar GmbH) requires for each monograph four files: 
+* 1 PDF file containing the cover page
+* 1 PDF file containing the content of the monograph
+* 1 XML file in the ONIX data format containing metadata
+* 1 XML file in a local scheme, defined by KNV, containing metadata
+
+Adminisation and maintenance of metadata can be realised by the use of the Open Monograph Press (OMP). Since OMP is not able to export ONIX- and KNV-XML files, it is necessary to create a tool which can provide those files. The Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. Due to the fact that
 
 ## Requirements
 
