@@ -12,7 +12,7 @@ The Metadata-Export Tool should be web-based and should be able to validate meta
 
 ## Requirements
 
-Following requirements are necessary for the use of the Metadata-Export tool:
+Following requirements are necessary for the use of the Metadata-Export Tool:
 
 * the Python programming language ([version 2.7](https://www.python.org/download/releases/2.7/)) 
 
