@@ -30,7 +30,7 @@ The open source framework [web2py](http://web2py.com/books/default/chapter/29/01
 
 ### Markdown
 
-[Markdown](https://guides.github.com/features/mastering-markdown/) is a simplified and easy readable markup language. Texts written in Markdown language can be automatically converted into other text formats such as PDF, HTML and MS-Word.
+[Markdown](https://guides.github.com/features/mastering-markdown/) is a simplified and easily readable markup language. Texts written in Markdown language can be automatically converted into other text formats such as PDF, HTML and MS-Word.
 
 ## User Manual
 
