@@ -44,11 +44,11 @@ The open source framework [web2py](http://web2py.com/books/default/chapter/29/01
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure1.png">
 
-Figure 1 shows the index page of the Metadata-Export Tool. By clicking on the 'Bücher' hyperlink in the navigation menu, you can see a table showing all monographs sorted by their descending submission ID and consisting of six columns: 1) submission ID, 2) setting value (title), 3) date submitted, 4) status, 5) KNV-XML and 6) ONIX. In the status column you can see if the metadata of a monograph is already sent to KNV or if it has still to be done. In the last to columns you can find hyperlinks directly leading to the download of the KNV- and the ONIX-XML file.
+Figure 1 shows the index page of the Metadata-Export Tool. By clicking on the 'Bücher' hyperlink in the navigation menu, you can see a table showing all monographs sorted by their descending submission ID and consisting of six columns: 1) submission ID, 2) setting value (title), 3) date submitted, 4) status, 5) KNV-XML and 6) ONIX. In the status column you can see if the metadata of a monograph has been already sent to KNV or if it has still to be done. In the last to columns you can find hyperlinks directly leading to the download of the KNV- and the ONIX-XML file.
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">
 
-If the metadata has not been yet sent to KNV, you can click on a hyperlink leading to another page where you can complete several data fields (figure 2). As you can see, there are different kinds of fields, as for example fields where you have to choose among different predefined answers or fields where have to upload PDF files. Then, you can check whether you have filled in all information correctly. For instance, the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will show this to show as you can see on figure 3.
+If the metadata has not been yet sent to KNV, you can click on a hyperlink leading to another page where you can complete several data fields (figure 2). As you can see, there are different kinds of fields, as for example fields where you have to choose among different predefined answers or fields where have to upload PDF files. Then, you can check whether you have filled in all information correctly. For instance, the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will show this to you (figure 3).
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure3.png">
 
