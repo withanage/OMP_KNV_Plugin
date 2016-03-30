@@ -52,4 +52,11 @@ Screenshot von Link einfügen
 
 ### KNV-XML export
 
+	
+
+There does not appear to be a single markdown construct that will do what you want, however both of the following pieces of markdown work (as least on SO):
+
+[<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
+https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/background.jpg
+
 Screenshot von Link einfügen
