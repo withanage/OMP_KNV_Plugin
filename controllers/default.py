@@ -202,7 +202,7 @@ def get_books():
     links = [
            dict(header=T('Status'),body= (lambda row: '' if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  A('In KNV zuschicken', _href=T('set_knv_metadata/'+str(row.submission_settings.submission_id))))),
            dict(header=T('KNV-XML'),body= (lambda row: A('KNV', _href=T('get_knv_metadata.xml/'+str(row.submission_settings.submission_id))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  '')),
-           dict(header=T('Onix'),body= (lambda row: A('ONIX', _href=T('get_onix_data/'+str(row.submission_settings.submission_id))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  ''))
+           dict(header=T('Onix'),body= (lambda row: A('ONIX', _href=('../onix/get_version.xml/'+str(row.submission_settings.submission_id)+str('/Softcover'))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  ''))
       ],
     links_in_grid=True,
     upload='<default>',

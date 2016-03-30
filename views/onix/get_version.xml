@@ -85,26 +85,7 @@ submission_id = request.args[0]
         </language>
         <b254>{{=pages_roman}}</b254>
         <b255>{{=pages_arabic}}</b255>
-        <mainsubject sourcename="Publisher">
-            <b191>93</b191>
-            <b068>1.1</b068>
-            <b069>NHAP</b069>
-            <b070>Geschichtsforschung: Quellen</b070>
-        </mainsubject>
-        <mainsubject>
-            <b191>26</b191>
-            <b068>2.0</b068>
-            <b069>1555</b069>
-            <b070>Hardcover, Softcover / Geschichte/Neuzeit bis 1918</b070>
-        </mainsubject>
-        <subject sourcename="DNB">
-            <b067>18</b067>
-            <b069>940</b069>
-        </subject>
-        <subject>
-            <b067>20</b067>
-            <b070>Habsburg</b070>
-        </subject>
+      
        
         <othertext language="ger">
             <d102>01</d102>
@@ -123,6 +104,24 @@ submission_id = request.args[0]
                 sowohl für die historische Forschung, als auch für die Verwendung in der Lehre.
             </d104>
         </othertext>
+         <mainsubject sourcename="Publisher">
+            <b191>93</b191>
+            <b068>1.1</b068>
+            <b069>NHAP</b069>
+            <b070>Geschichtsforschung: Quellen</b070>
+        </mainsubject>
+        <mainsubject>
+            <b191>26</b191>
+            <b068>2.0</b068>
+            <b069>1555</b069>
+            <b070>Hardcover, Softcover / Geschichte/Neuzeit bis 1918</b070>
+        </mainsubject>
+         
+        <subject sourcename="DNB">
+            <b067>18</b067>
+            <b069>940</b069>
+        </subject>
+       
         <mediafile>
             <f114>04</f114>
             <f115>03</f115>
