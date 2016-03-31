@@ -6,7 +6,7 @@ This tool exports metadata files for the print-on-demand (POD) service of KNV (L
 * 1 XML file containing metadata (ONIX-XML format) 
 * 1 XML file containing metadata (local XML scheme defined by KNV)
 
-Administration and maintenance of metadata can be realised by the use of the Open Monograph Press (OMP). Since OMP is not able to export ONIX- and KNV-XML files, it is necessary to create a tool which can provide those files. The Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. For metadata **not** entered into OMP, the tool provides extra form-based input masks.
+In our use case, administration and maintenance of metadata is done in the Open Monograph Press (OMP)(Link). Since OMP is not able to export ONIX- and KNV-XML formats as defined by KNV, the Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. The tool provides extra form-based input masks for metadata which can not be entered into OMP.
 
 The Metadata-Export Tool should be web-based and should be able to validate metadata and to export XML files.
 
