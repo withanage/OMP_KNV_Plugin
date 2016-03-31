@@ -181,7 +181,7 @@ def return_published_books():
 def return_unpublished_books():
     
     
-    unpublised_query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) & (db.submission_settings.setting_name=='title') & (db.t_onix_additionals.submission_id != db.submission_settings.submission_id)
+    unpublised_query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) & (db.submission_settings.setting_name=='title') 
     
     onix_view = dict(header=T('ONIX'),body=(lambda row: A('ONIX', _href=T('get_onix_metadata/'+str(row.submission_settings.submission_id))))),
     unpublised_entries=  SQLFORM.grid(
