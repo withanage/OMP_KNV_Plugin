@@ -1,10 +1,10 @@
 # Metadata-Export Tool
 
-The print-on-demand service of KNV (Koch, Neff & Volckmar GmbH) requires for each monograph four files: 
+This tool exports metadata files for the print-on-demand (POD) service of KNV (Link)(Koch, Neff & Volckmar GmbH).The POD service demands for each monograph/edited volume four different files: 
 * 1 PDF file containing the cover page
 * 1 PDF file containing the content of the monograph
-* 1 XML file in the ONIX data format containing metadata
-* 1 XML file in a local scheme, defined by KNV, containing metadata
+* 1 XML file containing metadata (ONIX-XML format) 
+* 1 XML file containing metadata (local XML scheme defined by KNV)
 
 Administration and maintenance of metadata can be realised by the use of the Open Monograph Press (OMP). Since OMP is not able to export ONIX- and KNV-XML files, it is necessary to create a tool which can provide those files. The Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. For metadata **not** entered into OMP, the tool provides extra form-based input masks.
 
