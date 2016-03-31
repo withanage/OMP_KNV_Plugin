@@ -1,3 +1,64 @@
 {{extend 'layout.html'}}
-
-<h1>Print on Demand plugin für KNV</h1><h2>Beschreibung</h2><p>Generiet aus Open Monograph Press und zusätzlichen  Eingabe Feldern ein  KNV - Zip Datei und schickt automatisch an die KNV.</p>
+<hr>
+<h1><a id="MetadataExport_Tool_0"></a>Metadata-Export Tool</h1>
+<p>This tool exports metadata files for the print-on-demand (POD) service of <a href="http://www.knv.de/lieferanten.html">KNV</a> (Koch, Neff &amp; Volckmar GmbH).The POD service demands for each monograph/edited volume four different files:</p>
+<ul>
+<li>1 PDF file containing the cover page</li>
+<li>1 PDF file containing the content of the monograph</li>
+<li>1 XML file containing metadata (ONIX-XML format)</li>
+<li>1 XML file containing metadata (local XML scheme defined by KNV)</li>
+</ul>
+<p>In our use case, administration and maintenance of metadata is done in the <a href="https://pkp.sfu.ca/omp/">Open Monograph Press</a> (OMP). Since OMP is not able to export ONIX- and KNV-XML formats as defined by KNV, the Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. The tool provides extra form-based input masks for metadata which can not be entered into OMP.</p>
+<p>The Metadata-Export Tool is web-based and able to export XML files.</p>
+<h2><a id="Requirements_12"></a>Requirements</h2>
+<p>Following requirements are necessary for the use of the Metadata-Export Tool:</p>
+<ul>
+<li>
+<p>the Python programming language (<a href="https://www.python.org/download/releases/2.7/">version 2.7</a>)</p>
+</li>
+<li>
+<p>the Python web framework <a href="http://www.web2py.com/init/default/download">web2py</a></p>
+</li>
+<li>
+<p>the <a href="https://www.mysql.de/downloads/">MySQL</a> database</p>
+</li>
+</ul>
+<h2><a id="Technologies_22"></a>Technologies</h2>
+<p>Following technologies and software are used in the development of the Metadata-Export tool: XML, ONIX, web2py and Markdown.</p>
+<h3><a id="XML_26"></a>XML</h3>
+<p><a href="https://en.wikipedia.org/wiki/XML">XML</a> (Extensible Markup Language) is a text-based data format for exchanging hierarchically structured information. The main advantages of XML are easy-readability, simplicity of the syntax and easy adaptability with standardised processing models.</p>
+<h3><a id="ONIX_30"></a>ONIX</h3>
+<p><a href="http://home.bic-media.com/index.php/onix-2-1">ONIX</a> (Online Information Exchange) is an XML-based data format found by  <a href="http://www.editeur.org/83/Overview/">EDItEUR</a>, an  international organization coordinating development of the standards in e-commerce. ONIX data format is used to exchange bibliographic and product information among publishers, booksellers (e.g. <a href="http://www.amazon.com/books-used-books-textbooks/b?ie=UTF8&amp;node=283155">Amazon.com, Inc.</a>), libraries and other stakeholders in the book trade.</p>
+<h3><a id="web2py_34"></a>web2py</h3>
+<p>The open source web framework <a href="http://web2py.com/books/default/chapter/29/01/introduction">web2py</a>, written in the Python programming language, is used for the development of database-based software. The Python framework web2py includes all the components which are needed to build fully functional web applications.</p>
+<h3><a id="Markdown_38"></a>Markdown</h3>
+<p><a href="https://guides.github.com/features/mastering-markdown/">Markdown</a> is a simplified and easily readable markup language. Texts written in the Markdown language can be automatically converted into other text formats such as PDF, HTML and MS-Word easily.</p>
+<h2><a id="User_Manual_42"></a>User Manual</h2>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure1.png">Figure 1</a></p>
+<p>Figure 1 shows the index page of the Metadata-Export Tool. In the main navigation menu, you can choose whether you want to see a list of published or unpublished books. In both cases, the monographs are listed in a table and sorted by their descending submission ID. The table of unpublished books (figure 1) consists of four columns.
+Those columns are:</p>
+<ul>
+<li>submission ID</li>
+<li>setting value (title)</li>
+<li>date submitted</li>
+<li>status</li>
+</ul>
+<p>The status column shows the user whether the metadata has already been sent to KNV or not. If not, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2).</p>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">Figure 2</a></p>
+<p>In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.</p>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure3.png">Figure 3</a></p>
+<p>E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).</p>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure04.png">Figure 4 </a></p>
+<p>In the table of published books (figure 4) the column ‘status’ is replaced by two other columns.
+Those columns are:</p>
+<ul>
+<li>KNV-XML</li>
+<li>ONIX</li>
+</ul>
+<p>These two columns contain hyperlinks directly leading to the download of the ONIX- and the KNV-XML file.</p>
+<h3><a id="ONIXXML_file_72"></a>ONIX-XML file</h3>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure5.png">Figure 5</a></p>
+<p>Figure 5 shows an example for an ONIX-XML file.</p>
+<h3><a id="KNVXML_file_78"></a>KNV-XML file</h3>
+<p><a href="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure06.png">Figure 6</a></p>
+<p>Figure 6 shows an example for a KNV-XML file.</p>

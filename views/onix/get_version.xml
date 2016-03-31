@@ -23,17 +23,7 @@ submission_id = request.args[0]
             <b244>{{=isbn_number}}</b244> 
         </productidentifier>
         <b012>{{=entry_key}}</b012> 
-         <!--series>
-        <seriesidentifier>
-            <b273>04</b273>
-            <b244>XCX68</b244>
-        </seriesidentifier>
-        <b018>Universitätsmuseum Heidelberg. Kataloge</b018>
-        <title>
-            <b202>01</b202>
-            <b203>Universitätsmuseum Heidelberg. Kataloge</b203>
-        </title>
-        </series-->
+       
         <title>
             <b202>01</b202> 
             <b203>{{=title}}</b203>
@@ -127,12 +117,12 @@ submission_id = request.args[0]
             
         </subject-->
         <!-- ende todo -->
-       
+       <!-- --> 
         <mediafile>
             <f114>04</f114>
             <f115>03</f115>
             <f116>01</f116>
-            <f117>http://api.vlb.de/api/v1/cover/9783946531029/m</f117>
+            <f117>http://api.vlb.de/api/v1/cover/9783946531029/m</f117> 
         </mediafile>
         <publisher>
             <b291>01</b291> <!-- done -->
@@ -140,6 +130,17 @@ submission_id = request.args[0]
             <b243>{{=codeValue}}</b243> 
             <b081>{{=publisher}}</b081> 
         </publisher>
+          <!--series>
+        <seriesidentifier>
+            <b273>04</b273>
+            <b244>XCX68</b244>
+        </seriesidentifier>
+        <b018>Universitätsmuseum Heidelberg. Kataloge</b018>
+        <title>
+            <b202>01</b202>
+            <b203>Universitätsmuseum Heidelberg. Kataloge</b203>
+        </title>
+        </series-->
         <b209>Heidelberg</b209> <!-- TODO ????????????? omp.presses;.primary_locale -->
         <b083>{{=country_manufacture_code}}</b083> 
         <b394>{{=publication_available}}</b394>  <!-- TODO ???????????    in 43 steht xml-->
