@@ -78,6 +78,6 @@ Figure 5 shows an example for an ONIX-XML file.
 
 ### KNV-XML export
 
-<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure6.png">
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure06.png">
 
 Figure 6 shows an example for a KNV-XML file.
