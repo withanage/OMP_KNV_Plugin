@@ -44,16 +44,16 @@ The open source web framework [web2py](http://web2py.com/books/default/chapter/2
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure1.png">
 
-Figure 1 shows the index page of the Metadata-Export Tool. In the navigation menu, you can choose whether you want to see a list of published or unpublished books. In both cases, the monographs are listed in a table and sorted by their descending submission ID. The table of unpublished books (figure 1) consists of four columns.
+Figure 1 shows the index page of the Metadata-Export Tool. In the main navigation menu, you can choose whether you want to see a list of published or unpublished books. In both cases, the monographs are listed in a table and sorted by their descending submission ID. The table of unpublished books (figure 1) consists of four columns.
 Those columns are: 
 * submission ID
 * setting value (title) 
 * date submitted
 * status
 
-The status column shows the user whether the metadata has already been sent to KNV or not. If the metadata has not yet been sent to KNV, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). 
+The status column shows the user whether the metadata has already been sent to KNV or not. If not, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). 
 
-<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">
+<img src="master/static/images/readme/figure2.png">
 
 In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
 
