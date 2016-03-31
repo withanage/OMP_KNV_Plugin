@@ -44,28 +44,40 @@ The open source web framework [web2py](http://web2py.com/books/default/chapter/2
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure1.png">
 
-Figure 1 shows the index page of the Metadata-Export Tool. By clicking on the 'Bücher' hyperlink in the navigation menu, you can see a table showing all monographs sorted by their descending submission ID and consisting of six columns. 
+Figure 1 shows the index page of the Metadata-Export Tool. In the navigation menu, you can choose whether you want to see a list of published or unpublished books. In both cases, the monographs are listed in a table and sorted by their descending submission ID. The table of unpublished books (figure 1) consists of four columns.
 Those columns are: 
 * submission ID
 * setting value (title) 
 * date submitted
 * status
-* KNV-XML
-* ONIX
 
-The status column shows the user whether the metadata has already been sent to KNV or not. In the last to columns you can find hyperlinks directly leading to the download of the KNV- and the ONIX-XML file.
+The status column shows the user whether the metadata has already been sent to KNV or not. If the metadata has not yet been sent to KNV, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). 
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">
 
-If the metadata has not yet been sent to KNV, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
-E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).
+In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure3.png">
 
+E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).
+
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure4.png">
+
+In the table of published books (figure 4) the column 'status' is replaced by two other columns.
+Those columns are:
+* KNV-XML
+* ONIX
+
+These two columns contain hyperlinks directly leading to the download of the ONIX- and the KNV-XML file. 
+
 ### ONIX-XML export
  
-Screenshot von Link einfügen
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure5.png">
+
+Figure 5 shows an example for an ONIX-XML file.
 
 ### KNV-XML export
 
-Screenshot von Link einfügen
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure6.png">
+
+Figure 6 shows an example for a KNV-XML file.
