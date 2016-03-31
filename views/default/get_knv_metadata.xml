@@ -9,7 +9,9 @@ xml+='		<product-name>'+str(item["buchtitel"])+'</product-name>'
 xml+='		<number-of-parts>'+str(item["anz_teile"])+'</number-of-parts>'
 xml+='		<IP-holder>'
 xml+='			<IP-holder-name>'+str(item["verlagsname"])+'</IP-holder-name>'
+if item["gln"]:
 xml+='			<IP-holder-id>'+str(item["gln"])+'</IP-holder-id>'
+pass
 xml+='		</IP-holder>'
 xml+='		<binding-type>'+str(item["bindeart"])+'</binding-type>'
 xml+='		<number-of-creases>'+str(item["anz_rillungen"])+'</number-of-creases>'
@@ -49,9 +51,15 @@ xml+='			<filename>'+str(item["isbn"])+'.innerwork.pdf'+'</filename>'
 xml+='			<part-number>'+str(item["teilnummer"])+'</part-number>'
 xml+='			<number-of-pages>'+str(item["anzahl_seiten"])+'</number-of-pages>'
 xml+='			<colour-scheme-used>'+str(item["farbraum"])+'</colour-scheme-used>'
+if item["anzahl_farbseiten"]:
 xml+='			<number-of-colour-pages>'+str(item["anzahl_farbseiten"])+'</number-of-colour-pages>'
+pass
+if item["breite_der_trimbox"]:
 xml+='			<trim-box-width-mm>'+str(item["breite_der_trimbox"])+'</trim-box-width-mm>'
+pass
+if item["hoehe_der_trimbox"]:
 xml+='			<trim-box-height-mm>'+str(item["hoehe_der_trimbox"])+'</trim-box-height-mm>'
+pass
 xml+='			<processing-instructions>'
 xml+='				<check-trim-box>'+str(item["pruefung_trimbox"])+'</check-trim-box>'
 xml+='				<checking-tolerance-mm>'+str(item["prueftoleranz"])+'</checking-tolerance-mm>'

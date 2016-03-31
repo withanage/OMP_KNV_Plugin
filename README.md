@@ -1,14 +1,14 @@
 # Metadata-Export Tool
 
-This tool exports metadata files for the print-on-demand (POD) service of KNV (Link)(Koch, Neff & Volckmar GmbH).The POD service demands for each monograph/edited volume four different files: 
+This tool exports metadata files for the print-on-demand (POD) service of [KNV](http://www.knv.de/lieferanten.html) (Koch, Neff & Volckmar GmbH).The POD service demands for each monograph/edited volume four different files: 
 * 1 PDF file containing the cover page
 * 1 PDF file containing the content of the monograph
 * 1 XML file containing metadata (ONIX-XML format) 
 * 1 XML file containing metadata (local XML scheme defined by KNV)
 
-In our use case, administration and maintenance of metadata is done in the Open Monograph Press (OMP)(Link). Since OMP is not able to export ONIX- and KNV-XML formats as defined by KNV, the Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. The tool provides extra form-based input masks for metadata which can not be entered into OMP.
+In our use case, administration and maintenance of metadata is done in the [Open Monograph Press](https://pkp.sfu.ca/omp/) (OMP). Since OMP is not able to export ONIX- and KNV-XML formats as defined by KNV, the Metadata-Export Tool reads metadata entered into OMP and converts it into the two XML formats required by KNV. The tool provides extra form-based input masks for metadata which can not be entered into OMP.
 
-The Metadata-Export Tool is web-based and is able to export XML files.
+The Metadata-Export Tool is web-based and able to export XML files.
 
 ## Requirements
 
@@ -44,28 +44,40 @@ The open source web framework [web2py](http://web2py.com/books/default/chapter/2
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure1.png">
 
-Figure 1 shows the index page of the Metadata-Export Tool. By clicking on the 'Bücher' hyperlink in the navigation menu, you can see a table showing all monographs sorted by their descending submission ID and consisting of six columns. 
+Figure 1 shows the index page of the Metadata-Export Tool. In the main navigation menu, you can choose whether you want to see a list of published or unpublished books. In both cases, the monographs are listed in a table and sorted by their descending submission ID. The table of unpublished books (figure 1) consists of four columns.
 Those columns are: 
 * submission ID
 * setting value (title) 
 * date submitted
 * status
-* KNV-XML
-* ONIX
 
-The status column shows the user whether the metadata has already been sent to KNV or not. In the last to columns you can find hyperlinks directly leading to the download of the KNV- and the ONIX-XML file.
+The status column shows the user whether the metadata has already been sent to KNV or not. If not, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). 
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">
 
-If the metadata has not yet been sent to KNV, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
-E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).
+In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure3.png">
 
-### ONIX-XML export
+E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).
+
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure04.png">
+
+In the table of published books (figure 4) the column 'status' is replaced by two other columns.
+Those columns are:
+* KNV-XML
+* ONIX
+
+These two columns contain hyperlinks directly leading to the download of the ONIX- and the KNV-XML file. 
+
+### ONIX-XML file
  
-Screenshot von Link einfügen
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure5.png">
 
-### KNV-XML export
+Figure 5 shows an example for an ONIX-XML file.
 
-Screenshot von Link einfügen
+### KNV-XML file
+
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure06.png">
+
+Figure 6 shows an example for a KNV-XML file.
