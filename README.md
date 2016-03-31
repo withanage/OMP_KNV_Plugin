@@ -53,7 +53,7 @@ Those columns are:
 
 The status column shows the user whether the metadata has already been sent to KNV or not. If not, you can click on the hyperlink leading to a metadata entering page for KNV (figure 2). 
 
-<img src="master/static/images/readme/figure2.png">
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure2.png">
 
 In the metadata entering form, there are different kinds of fields: data fields, file upload fields and selection boxes. Data entered into those fields are checked against rules defined by KNV.
 
