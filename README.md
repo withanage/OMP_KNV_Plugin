@@ -61,7 +61,7 @@ In the metadata entering form, there are different kinds of fields: data fields,
 
 E.g. the ISBN number must consist of 13 digits. If someone enters only 12 digits, the input is not valid and the Metadata-Export Tool will return this to you (figure 3).
 
-<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure4.png">
+<img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure04.png">
 
 In the table of published books (figure 4) the column 'status' is replaced by two other columns.
 Those columns are:
