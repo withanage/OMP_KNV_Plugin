@@ -19,9 +19,9 @@ def get_knv_metadata():
     return dict(data=db(db.t_knv_metadata.submission_id==request.args(0)).select())
     
     
-def set_knv_metadata():
+def create_knv_metadata():
      if len(db(db.t_knv_metadata.submission_id==request.args(0)).select(db.t_knv_metadata.submission_id))>0:
-        redirect(URL('set_onix_data/'+request.args(0)))
+        redirect(URL('create_onix_metadata/'+request.args(0)))
      #form.element(name='file')['_onchange']='... your js here ...'
      form = SQLFORM(db.t_knv_metadata, record=None,
         deletable=False, linkto=None,
@@ -53,10 +53,10 @@ def set_knv_metadata():
      form[0].insert(11, DIV(H3('Cover',_style='color:green')));
      form[0].insert(29, DIV(H3('Buchblock',_style='color:green')));
      if form.process().accepted:
-         redirect(URL('set_onix_data/'+request.args(0)))
+         redirect(URL('create_onix_metadata/'+request.args(0)))
      return dict(form=form)
 
-def get_onix_data():
+def get_onix_metadata():
      if not request.args(0):
         redirect(URL('error'))
      data=db(db.t_onix_additionals.submission_id==request.args(0)).select().first()
@@ -73,11 +73,11 @@ def onix_additionals_manage():
     form = SQLFORM.smartgrid(db.t_onix_additionals,onupdate=auth.archive ,user_signature=False,  exportclasses = None)
     return locals()
 
-def set_onix_data():
+def create_onix_metadata():
      if  (request.args(0) is None) | (len(db(db.t_onix_additionals.submission_id==request.args(0)).select(db.t_onix_additionals.submission_id))>0):
-          redirect(URL('get_books'))
+          redirect(URL('return_unpublished_books'))
      if not db(db.t_knv_metadata.submission_id==request.args(0)).select(db.t_knv_metadata.submission_id):
-         redirect(URL('set_knv_metadata/'+request.args(0)))
+         redirect(URL('create_knv_metadata/'+request.args(0)))
      book_id = request.args(0)
      crud.settings.create_next = URL('index')
      crud.settings.detect_record_change = True
@@ -100,7 +100,7 @@ def set_onix_data():
         separator=': ',
         )
      if form.process().accepted:
-       redirect(URL('get_books'))
+       redirect(URL('return_published_books'))
      '''
      n_fields = len(form[0].components)
      fields = form[0].components
@@ -125,12 +125,9 @@ def set_onix_data():
                  submission_settings = submission_settings
      )
 
-
-
-def get_books():
-    query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) &    (db.submission_settings.setting_name=='title') & (db.t_onix_additionals.submission_id==db.submission_settings.submission_id)
-    
-    entries= SQLFORM.grid(
+def return_published_books():
+  query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) &    (db.submission_settings.setting_name=='title')  & (db.t_onix_additionals.submission_id == db.submission_settings.submission_id)
+  entries= SQLFORM.grid(
     query,
     fields=[db.submission_settings.submission_id,db.submission_settings.setting_value,db.submissions.date_submitted],
     field_id=None,
@@ -138,7 +135,7 @@ def get_books():
     headers={},
     orderby=db.submission_settings.submission_id,
     groupby=db.submission_settings.submission_id,
-    searchable=False,
+    searchable=True,
     sortable=True,
     paginate=20,
     deletable=False,
@@ -149,7 +146,7 @@ def get_books():
     csv=False,
     links = [
            
-            dict(header=T('ONIX'),body=(lambda row: A('ONIX', _href=T('get_onix_data/'+str(row.submission_settings.submission_id))))),
+            dict(header=T('ONIX'),body=(lambda row: A('ONIX', _href=T('../onix/get_version.xml/'+str(row.submission_settings.submission_id)+'/Softcover')))),
            dict(header=T('KNV'),body=(lambda row: A('XML', _href=T('get_knv_metadata.xml/'+str(row.submission_settings.submission_id))))),
      
             ],
@@ -179,9 +176,14 @@ def get_books():
     buttons_placement = 'right',
     links_placement = 'right'
     )
-    unpublised_query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) &    (db.submission_settings.setting_name=='title')
+  return locals()
+
+def return_unpublished_books():
     
-    onix_view = dict(header=T('ONIX'),body=(lambda row: A('ONIX', _href=T('get_onix_data/'+str(row.submission_settings.submission_id))))),
+    
+    unpublised_query =  (db.submission_settings.submission_id ==  db.submissions.submission_id) & (db.submission_settings.setting_name=='title') & (db.t_onix_additionals.submission_id != db.submission_settings.submission_id)
+    
+    onix_view = dict(header=T('ONIX'),body=(lambda row: A('ONIX', _href=T('get_onix_metadata/'+str(row.submission_settings.submission_id))))),
     unpublised_entries=  SQLFORM.grid(
     unpublised_query,
     fields=[db.submission_settings.submission_id,db.submission_settings.setting_value,db.submissions.date_submitted],
@@ -190,9 +192,9 @@ def get_books():
     headers={},
     orderby=~db.submission_settings.submission_id,
     groupby=db.submission_settings.submission_id,
-    searchable=False,
+    searchable=True,
     sortable=True,
-    paginate=20,
+    paginate=30,
     deletable=False,
     editable=False,
     details=True,
@@ -200,9 +202,9 @@ def get_books():
     create=False,
     csv=False,
     links = [
-           dict(header=T('Status'),body= (lambda row: '' if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  A('In KNV zuschicken', _href=T('set_knv_metadata/'+str(row.submission_settings.submission_id))))),
-           dict(header=T('KNV-XML'),body= (lambda row: A('KNV', _href=T('get_knv_metadata.xml/'+str(row.submission_settings.submission_id))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  '')),
-           dict(header=T('Onix'),body= (lambda row: A('ONIX', _href=('../onix/get_version.xml/'+str(row.submission_settings.submission_id)+str('/Softcover'))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  ''))
+           dict(header=T('Status'),body= (lambda row: '' if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  A('KNV-XML+ONIX Generieren', _href=T('create_knv_metadata/'+str(row.submission_settings.submission_id))))),
+           #dict(header=T('KNV-XML'),body= (lambda row: A('KNV', _href=T('get_knv_metadata.xml/'+str(row.submission_settings.submission_id))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  '')),
+           #dict(header=T('Onix'),body= (lambda row: A('ONIX', _href=('../onix/get_version.xml/'+str(row.submission_settings.submission_id)+str('/Softcover'))) if len(db(db.t_onix_additionals.submission_id==row.submission_settings.submission_id).select())>0 else  ''))
       ],
     links_in_grid=True,
     upload='<default>',
@@ -231,4 +233,4 @@ def get_books():
     links_placement = 'right'
     )
         
-    return dict(entries =entries, unpublised_entries=unpublised_entries)
+    return locals()
