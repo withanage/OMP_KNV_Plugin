@@ -70,13 +70,13 @@ Those columns are:
 
 These two columns contain hyperlinks directly leading to the download of the ONIX- and the KNV-XML file. 
 
-### ONIX-XML export
+### ONIX-XML file
  
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure5.png">
 
 Figure 5 shows an example for an ONIX-XML file.
 
-### KNV-XML export
+### KNV-XML file
 
 <img src="https://raw.githubusercontent.com/withanage/OMP_KNV_Plugin/master/static/images/readme/figure06.png">
 
