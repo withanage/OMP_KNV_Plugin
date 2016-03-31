@@ -5,5 +5,6 @@ response.meta.keywords = settings.keywords
 response.meta.description = settings.description
 response.menu = [
 (T('Index'),URL('default','index')==URL(),URL('default','index'),[]),
-(T('Bücher'),URL('default','get_books')==URL(),URL('default','get_books'),[]),
+(T('Unveröffentlichte Bücher'),URL('default','return_unpublished_books')==URL(),URL('default','return_unpublished_books'),[]),
+(T('Veröffentlichte Bücher'),URL('default','return_published_books')==URL(),URL('default','return_published_books'),[]),
 ]

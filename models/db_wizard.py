@@ -338,6 +338,18 @@ db.define_table("t_onix_additionals",
      #Field ('f_update_type_code', 'string',label='NotificationType')
      Field('f_pages_roman', 'string', label=T('Roman Nummer , Anzahl Seiten'), notnull = True ),
      Field('f_pages_arabic', 'integer', label=T('Arabic , Anzahl Seiten'), notnull = True ),
+     Field('f_b191','integer', label=T('b191 : Subject scheme identifier '), notnull = True),
+     Field('f_b068','string', label=T('b068 :Scheme version number '), notnull = True),
+     Field('f_b069','string', label=T('b069 :Subject code '), notnull = True),
+     Field('f_b070','string', label=T('b070 :Subject heading text '), notnull = True),
+     
+     Field('f_b069_wg','string', label=T('b069 Warengruppe :Subject code '), notnull = True),
+     Field('f_b070_wg','text', label=T('b070 Warengruppe :Subject heading text '), notnull = True),
+     
+     Field('f114_file_type_code', 'string', label=T('File Type Code: Image:Front Cover'),default='04', notnull=True),
+     Field('f115_file_format_code', 'string', label=T('File Format  Code (JPG)'),default='03', notnull=True),
+     Field('f116_file_link_type', 'string', label=T('File Link Type (URL)'),default='01', notnull=True),
+     Field('f117_cover_image', 'string', label=T('http Link zum comver in OMP Web-portal'), notnull=True),
  migrate=True,
  redefine=True
 )
