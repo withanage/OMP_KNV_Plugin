@@ -1,5 +1,30 @@
 {{extend 'layout.html'}}
-{{=HR()}}
-{{=unpublised_entries}}
-<br/>
 
+<div class="container-fluid">
+  <div class="col-md-12">
+    <div class="web2py_grid ">
+      <div class="web2py_console  ">
+        <div class="web2py_table">
+          <div class="web2py_htmltable" style="width:100%;overflow-x:auto;-ms-overflow-x:scroll">
+
+            <table>
+              {{=THEAD(TR(TH('Submission Id'), TH('Titel'), TH('Datum'), TH('Status')))}}
+              {{i= 0}}
+              {{=BR()}}
+              {{for book in unpublished_books:
+    if i %2  == 0:
+    odd_even = 'w2p_even even'
+    else:
+    odd_even = 'w2p_odd odd'
+    pass
+    =TR(TD(book['submission_settings']['submission_id']),TD(book['submission_settings']['setting_value']), TD(book['submissions']['date_submitted']), TD( A('Veröffentlichen', _href=T('create_knv_metadata/'+str(book.submission_settings.submission_id)),_class=odd_even)))
+    i  += 1
+  pass
+              }}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
