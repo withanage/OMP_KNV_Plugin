@@ -5,25 +5,8 @@ import re
 #Für Hardcover eine andere XML
 
 submission_id = request.args[0]
-
-}}
-<ONIXmessage release="2.1">
-    <header>
-        <m174>Universitätsbibliothek Heidelberg</m174> 
-        <m175> Anja Konopka, +49 6221 54 2569</m175> 
-        <m283>konopka@ub.uni-heidelberg.de</m283>
-        <m182>{{=sent_date}}</m182> <!--TODO kommt aus t_onix_additionals.f_sent_date -->
-    </header>
-    <product datestamp="{{=publication_date}}"> <!--TODO-->
-        <a001>{{=isbn_number}}</a001>
-        <a002>{{=notification_type}}</a002>
-       
-        <productidentifier>
-            <b221>{{=notification_type}}</b221>  
-            <b244>{{=isbn_number}}</b244> 
-        </productidentifier>
-        <b012>{{=entry_key}}</b012> 
-         <!--series>
+'''
+   <!--series>
         <seriesidentifier>
             <b273>04</b273>
             <b244>XCX68</b244>
@@ -34,13 +17,32 @@ submission_id = request.args[0]
             <b203>Universitätsmuseum Heidelberg. Kataloge</b203>
         </title>
         </series-->
+'''
+
+}}
+<ONIXmessage release="2.1">
+    <header>
+        <m174>Universitätsbibliothek Heidelberg</m174> 
+        <m175> Anja Konopka, +49 6221 54 2569</m175> 
+        <m283>konopka@ub.uni-heidelberg.de</m283>
+        <m182>{{=sent_date}}</m182> 
+    </header>
+    <product datestamp="{{=publication_date}}"> 
+        <a001>{{=isbn_number}}</a001>
+        <a002>{{=notification_type}}</a002>
+       
+        <productidentifier>
+            <b221>{{=notification_type}}</b221>  
+            <b244>{{=isbn_number}}</b244> 
+        </productidentifier>
+        <b012>{{=entry_key}}</b012> 
+       
         <title>
             <b202>01</b202> 
             <b203>{{=title}}</b203>
             <b029>{{=sub_title}}</b029> 
         </title>
         
-        <!--- Contributer ist eine schleife-->
         {{ 
         for author in authors:
         =XML('<contributor>')
@@ -86,40 +88,36 @@ submission_id = request.args[0]
         <b254>{{=pages_roman}}</b254>
         <b255>{{=pages_arabic}}</b255>
       
-       <!-- mehrfach vorkommen - default, ohne othertext abstracts mit Parameter, kommt alle Abstracts -->
-        <othertext language="ger">
-            <d102>01</d102> <!--fest-->
-            <d103>02</d103> <!--html -->
-            <d104> <!--- Abstract  submission_settings.setting_name == 'abstract'-->
+      {{
+        '''
+        <!-- mehrfach vorkommen - default, ohne othertext abstracts mit Parameter, kommt alle Abstracts --> 
+              <othertext language="ger">
+            <d102>01</d102> 
+            <d103>02</d103>
+            <d104> 
               
-              Im Zuge eines "material turn" der historischen Forschung rücken die materiellen
-                Aspekte frühneuzeitlicher Diplomatie zunehmend in den Fokus. Wie wurde Diplomatie
-                finanziert? Welche Objekte wurden im Zuge des diplomatischen Geschenkverkehrs
-                ausgetauscht? Welche Personenkreise wurden mit Gaben und gegebenenfalls
-                Bestechungsgeldern bedacht? Die vorliegende Edition bisher unveröffentlichter
-                Ausgabenabrechnung der kaiserlichen Gesandten in Konstantinopel Joachim von
-                Sinzendorff und Friedrich Preiner aus dem Wiener Haus-, Hof- und Staatsarchiv
-                liefert Antworten auf diese und vielfältige weitere Fragestellungen der neuen
-                Diplomatiegeschichte. Ergänzt um ein umfangreiches Register und einen sachlichen
-                Anmerkungsapparat, der besonderen Wert auf die Identifikation historischer Akteure
-                sowie osmanischer Würdenträger und Fachbegriffe legt, eignet sich dieser Band
-                sowohl für die historische Forschung, als auch für die Verwendung in der Lehre.
+              =abstracts
             </d104>
         </othertext>
+        '''
+        }}
+        
         
          <mainsubject sourcename="Publisher">
-           <!-- kommen direkt aus onix tabelle -->
-            <b191>93</b191>
-            <b068>1.1</b068>
-            <b069>NHAP</b069>
-            <b070>Geschichtsforschung: Quellen</b070>
+     
+            <b191>{{=f_b191}}</b191>
+            <b068>{{=f_b068}}</b068>
+            <b069>{{=f_b069}}</b069>
+            <b070>{{=f_b070}}</b070>
         </mainsubject>
         <mainsubject>
-            <b191>26</b191> <!-- fest -->
-            <b068>2.0</b068>  <!-- fest -->
-            <b069>1555</b069> <!-- kommen direkt aus onix tabelle -->
-            <b070>Hardcover, Softcover / Geschichte/Neuzeit bis 1918</b070> <!-- kommen direkt aus onix tabelle -->
+            <b191>26</b191>
+            <b068>2.0</b068> 
+            <b069>{{=f_b069_wg}}</b069>
+            <b070>{{=f_b070_wg}}</b070>
         </mainsubject>
+        {{
+        '''
          <!--todo  -->
         <!--subject>
             <b067>20</b067> 
@@ -127,56 +125,59 @@ submission_id = request.args[0]
             
         </subject-->
         <!-- ende todo -->
-       
+       <!-- --> 
+       '''
+       }}
         <mediafile>
-            <f114>04</f114>
-            <f115>03</f115>
-            <f116>01</f116>
-            <f117>http://api.vlb.de/api/v1/cover/9783946531029/m</f117>
+       
+            <f114>{{=f114_file_type_code}}</f114>
+            <f115>{{=f115_file_format_code}}</f115>
+            <f116>{{=f116_file_link_type}}</f116>
+            <f117>{{=f117_cover_image}}</f117> 
         </mediafile>
         <publisher>
-            <b291>01</b291> <!-- done -->
+            <b291>01</b291>
             <b241>{{=codeType}}</b241>
             <b243>{{=codeValue}}</b243> 
             <b081>{{=publisher}}</b081> 
         </publisher>
-        <b209>Heidelberg</b209> <!-- TODO ????????????? omp.presses;.primary_locale -->
+       
+        <b209>Heidelberg</b209>
         <b083>{{=country_manufacture_code}}</b083> 
-        <b394>{{=publication_available}}</b394>  <!-- TODO ???????????    in 43 steht xml-->
-        <b003>{{=publication_date}}</b003> <!--  omp.publication_dates.date die Verbindung kommt mit Format  gel bekannt. Maße werden gebraucht für die Lagerlogistik -->
+        <b394>{{=publication_available}}</b394>  
+        <b003>{{=publication_date}}</b003> 
         <measure>
-        <c093>01</c093><!-- Codelist 48. Format: Höhe.-->
-        <c094>{{=height}}</c094> <!--Musterzahlen-->
+        <c093>01</c093>
+        <c094>{{=height}}</c094> 
         <c095>{{=height_unit_code}}</c095>
         </measure>
         <measure>
         <c093>02</c093>
-        <!-- Codelist 48. Format: Breite.-->
+        
         <c094>{{=width}}</c094>
         <c095>{{=width_unit_code}}</c095>
         </measure>
         <measure>
         <c093>03</c093>
-        <!-- Codelist 48. Format: Tiefe.-->
+        
         <c094>{{=thickness}}</c094>
         <c095>{{=thickness_unit_code}}</c095>
         </measure>
         <measure>
         <c093>08</c093>
-        <!-- Codelist 48. Gewicht.-->
+        
         <c094>{{=weight}}</c094> 
         <c095>{{=weight_unit_code}}</c095>
         </measure>  
         <supplydetail>
             <supplieridentifier>
-                <j345>{{=press_code_type}}</j345> <!--  press_settings.codeType-->
-                <b244>{{=press_code_value}}</b244><!-- press_settings.codeValue -->
+                <j345>{{=press_code_type}}</j345> 
+                <b244>{{=press_code_value}}</b244>
             </supplieridentifier>
-            <j137>{{=publisher}}</j137> <!-- OMP.omp.press_settings.publisher-->
-            <j292>01</j292>   <!--done-->
-             <!-- <j141>IP</j141> falls publication_format_settings.product_availability_code-->
-            <j396>{{=product_availability_code}}</j396> <!-- publication_format_settings.product_availability_code-->
-            <!-- wiederholung keine first()-->
+            <j137>{{=publisher}}</j137> 
+            <j292>01</j292>   
+             {{#<!-- <j141>IP</j141> falls publication_format_settings.product_availability_code-->}}
+            <j396>{{=product_availability_code}}</j396> 
             {{for price in prices:}}
             <price>
                 <j148>{{=price['price_type_code']}}</j148>
